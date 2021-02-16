@@ -1,9 +1,6 @@
 composer:
 	composer install
 
-yarn:
-	yarn install
-
 db:
 	php bin/console doctrine:database:drop --if-exists --force
 	php bin/console doctrine:database:create
@@ -12,21 +9,11 @@ db:
 cache:
 	php bin/console cache:clear
 
-asset:
-	yarn encore dev
-
-install: composer yarn db cache asset
+install: composer db cache
 
 i : install
 
-install-local: db cache asset
+install-local: db cache
 
 il: install-local
 
-install-dataset: install dataset
-
-id: install-dataset
-
-install-local-dataset: install-local dataset
-
-ild: install-local-dataset
