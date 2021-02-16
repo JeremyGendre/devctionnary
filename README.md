@@ -64,3 +64,5 @@ Then, duplicate the .env file and create a .env.local file that you can override
 - `make install` 
 then
 - `symfony serve` to start the php development server
+
+ <img src="https://raw.githubusercontent.com/commitizen/cz-cli/master/meta/screenshots/add-commit.png" alt="Image"/>
