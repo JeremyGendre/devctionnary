@@ -51,13 +51,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Then, duplicate the .env file and create a .env.local file that you can override in order to fill in the right information about the database and so on.
 
 ### Commands
-- `yarn install / npm install`
 - `composer install`
 - `php bin/console doctrine:database:drop --if-exists --force`
 - `php bin/console doctrine:database:create`
 - `php bin/console doctrine:schema:update --force` or `php bin/console doctrine:migrations:migrate`
 - `php bin/console cache:clear`
-- `yarn encore dev` to make webpack encore watch and compile your js & css files
 - `symfony serve` to start the php development server **OR** `php -S localhost:8000`
 
 **OR** If you have *make* installed on your computer :
