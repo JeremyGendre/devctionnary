@@ -18,8 +18,7 @@ class UserController extends BaseAbstractController
      * @Route("/me", name="users_get_me", methods={"GET"})
      */
     public function getMe(
-        SerializerInterface $serializer,
-        UserRepository $userRepository
+        SerializerInterface $serializer
     ): JsonResponse
     {        
         return $this->successJsonResponse($serializer->serialize($this->getUser(), 'json', ['groups' => 'getMe']));
@@ -30,7 +29,6 @@ class UserController extends BaseAbstractController
      */
     public function patchMe(
         SerializerInterface $serializer,
-        UserRepository $userRepository,
         Request $request,
         UserService $userService
     ): JsonResponse
@@ -44,7 +42,6 @@ class UserController extends BaseAbstractController
      * @Route("/me", name="users_delete_me", methods={"DELETE"})
      */
     public function deleteMe(
-        UserRepository $userRepository,
         UserService $userService
     ): JsonResponse
     {
