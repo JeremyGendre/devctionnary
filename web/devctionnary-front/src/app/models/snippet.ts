@@ -4,9 +4,8 @@ export class Snippet {
     id: string;
     title: string;
     content: string;
-    creationDate: Date;
-    updateDate: Date;
+    createdAt: Date;
+    updatedAt: Date;
     description: string;
-    user: User;
-    
+    author: User;
 }
