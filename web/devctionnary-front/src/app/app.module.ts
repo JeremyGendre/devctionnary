@@ -1,3 +1,4 @@
+import { DialogConfirmUserDeletionComponent } from './get-profile/dialog-confirm/dialog-confirm-user-deletion.component';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -35,7 +36,8 @@ import { ErrorModalComponent } from './error-modal/error-modal.component';
     LoginComponent,
     GetProfileComponent,
     ModifyProfileComponent,
-    ErrorModalComponent
+    ErrorModalComponent,
+    DialogConfirmUserDeletionComponent
   ],
   imports: [
     BrowserModule,

@@ -18,17 +18,6 @@ export class ModifyProfileComponent implements OnInit {
   isLoaded: boolean = false;
   user: User;
   isSubmitDisabled: boolean = false;
-  quillConfiguration = {
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],
-      ['blockquote', 'code-block'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-      [{ color: [] }, { background: [] }],
-      ['link'],
-      ['clean'],
-    ],
-  }
 
   profileForm = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -64,7 +53,7 @@ export class ModifyProfileComponent implements OnInit {
       if (error.status === 401) {
         this.router.navigate(['/login']);
       } else {
-        this.dialogService.openDialog();
+        this.dialogService.openErrorDialog();
       }
     });
   }
@@ -89,7 +78,7 @@ export class ModifyProfileComponent implements OnInit {
         if (error.status === 401) {
           this.router.navigate(['/login']);
         } else {
-          this.dialogService.openDialog();
+          this.dialogService.openErrorDialog();
         }
       });
     }
@@ -110,7 +99,7 @@ export class ModifyProfileComponent implements OnInit {
         if (error.status === 401) {
           this.router.navigate(['/login']);
         } else {
-          this.dialogService.openDialog();
+          this.dialogService.openErrorDialog();
         }
       });
     }

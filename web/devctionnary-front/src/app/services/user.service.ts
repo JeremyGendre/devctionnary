@@ -43,4 +43,13 @@ export class UserService {
       }
     );
   }
+
+  deleteMe() {
+    return this.http.delete(
+      environment.apiUrl + '/api/users/me',
+      {
+        headers: this.baseHeaders
+      }
+    );
+  }
 }

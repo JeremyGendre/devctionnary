@@ -55,8 +55,8 @@ class UserController extends BaseAbstractController
     public function deleteMe(): JsonResponse
     {
         $em = $this->getDoctrine()->getManager();
-        $this->em->remove($this->getUser());
-        $this->em->flush();
+        $em->remove($this->getUser());
+        $em->flush();
 
         return $this->emptyJsonResponse();
     }

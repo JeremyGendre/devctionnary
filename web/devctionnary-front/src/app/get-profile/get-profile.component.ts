@@ -1,3 +1,9 @@
+import { DialogConfirmUserDeletionComponent } from './dialog-confirm/dialog-confirm-user-deletion.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogService } from './../services/dialog.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from './../services/user.service';
 import { User } from './../models/user';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +20,10 @@ export class GetProfileComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private router: Router,
+    private dialogService: DialogService
   ) {}
 
   ngOnInit(): void {
@@ -25,8 +34,12 @@ export class GetProfileComponent implements OnInit {
         .subscribe((data: {data: {user: any}}) => {
           this.user = JSON.parse(data.data.user);
           this.editAllowed = false;
-        }, error => {
-          console.error(error)
+        }, (error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            this.router.navigate(['/login']);
+          } else {
+            this.dialogService.openErrorDialog();
+          }
         });
       } else {
         this.userService.getUser(null)
@@ -34,9 +47,17 @@ export class GetProfileComponent implements OnInit {
           this.user = JSON.parse(data.data.user);
           this.editAllowed = true;
         }, error => {
-          console.error(error)
+          if (error.status === 401) {
+            this.router.navigate(['/login']);
+          } else {
+            this.dialogService.openErrorDialog();
+          }
         });
       }
     })
+  }
+
+  confirmDeletion() {
+    this.dialog.open(DialogConfirmUserDeletionComponent);
   }
 }
