@@ -1,0 +1,15 @@
+<h2>Mon profil</h2>
+
+<div *ngIf="user">
+  <p><strong>Nom d'utilisateur : </strong>{{ user.username }}</p>
+  <p><strong>Email : </strong>{{ user.email }}</p>
+  <p><strong>Biographie : </strong>{{ user.biography || 'n.c.' }}</p>
+  <p><strong>Prénom : </strong>{{ user.firstName }}</p>
+  <p><strong>Nom : </strong>{{ user.lastName }}</p>
+</div>
+
+<div *ngIf="!user">
+  <div id="loader" fxLayout="row" fxLayoutAlign="center center">
+    <mat-spinner></mat-spinner>
+  </div>  
+</div> 

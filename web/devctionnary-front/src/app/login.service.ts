@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
@@ -6,10 +7,9 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LoginService {
 
-  apiUrl:string = 'http://localhost:8000';
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string){
-    return this.http.post(this.apiUrl + '/api/login_check',{username: username, password: password});
+    return this.http.post(environment.apiUrl + '/api/login_check',{username: username, password: password});
   }
 }

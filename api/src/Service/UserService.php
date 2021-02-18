@@ -31,6 +31,7 @@ class UserService
         if (isset($data['lastname']) === true) $user->setLastName($data['lastname']);
         if (isset($data['email']) === true) $user->setEmail($data['email']);
         if (isset($data['username']) === true) $user->setUsername($data['username']);
+        $user->setUpdatedAt(new \dateTime());
 
         $this->em->flush();
     }

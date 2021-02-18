@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
- * @Route("/users")
+ * @Route("/api/users")
  */
 class UserController extends BaseAbstractController
 {
@@ -20,7 +20,7 @@ class UserController extends BaseAbstractController
     public function getMe(
         SerializerInterface $serializer
     ): JsonResponse
-    {        
+    {
         return $this->successJsonResponse($serializer->serialize($this->getUser(), 'json', ['groups' => 'getMe']));
     }
 
