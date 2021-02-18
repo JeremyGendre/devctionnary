@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(e) {
-    console.log(this.loginForm.get('username').value, this.loginForm.get('password').value);
     e.preventDefault();
     this.loginService
       .login(this.loginForm.get('username').value, this.loginForm.get('password').value)
