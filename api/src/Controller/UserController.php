@@ -21,7 +21,7 @@ class UserController extends BaseAbstractController
         SerializerInterface $serializer
     ): JsonResponse
     {
-        return $this->successJsonResponse($serializer->serialize($this->getUser(), 'json', ['groups' => 'getMe']));
+        return $this->successJsonResponse(['user' => $serializer->serialize($this->getUser(), 'json', ['groups' => 'getMe'])]);
     }
 
     /**
@@ -30,10 +30,21 @@ class UserController extends BaseAbstractController
     public function patchMe(
         SerializerInterface $serializer,
         Request $request,
-        UserManager $userManager
+        UserManager $userManager,
+        UserRepository $userRepository
     ): JsonResponse
     {
-        $userManager->patchUser($this->getUser(), json_decode($request->getContent(), true));
+        if ($request->request->get('username') !== $this->getUser()->getUsername()) {
+            $existingUser = $userRepository->findOneBy(['username' => $request->request->get('username')]);
+            if($existingUser){
+                return $this->errorJsonResponse("Un utilisateur existe déjà avec le nom '" . $existingUser->getUsername() . "'");
+            }
+        }
+
+        $userManager->patchUser($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
 
         return $this->successJsonResponse($serializer->serialize($this->getUser(), 'json', ['groups' => 'getMe']));
     }
@@ -48,5 +59,23 @@ class UserController extends BaseAbstractController
         $this->em->flush();
 
         return $this->emptyJsonResponse();
+    }
+
+    /**
+     * @Route("/username-availability/{username}", name="users_username_availability", methods={"GET"})
+     */
+    public function getUsernameAvailability(
+        UserRepository $userRepository,
+        string $username
+    ): JsonResponse
+    {
+        if ($username !== $this->getUser()->getUsername()) {
+            $existingUser = $userRepository->findOneBy(['username' => $username]);
+            if($existingUser){
+                return $this->successJsonResponse(['available' => false]);
+            }
+        }
+        
+        return $this->successJsonResponse(['available' => true]);
     }
 }

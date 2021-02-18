@@ -5,6 +5,7 @@ namespace App\Service;
 
 
 use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use Exception;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -15,11 +16,18 @@ class UserManager extends AbstractEntityManager implements EntityManagerInterfac
      */
     private $passwordEncoder;
 
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
     public function __construct(
-        UserPasswordEncoderInterface $passwordEncoder
+        UserPasswordEncoderInterface $passwordEncoder,
+        EntityManager $em
     ){
         parent::__construct();
         $this->passwordEncoder = $passwordEncoder;
+        $this->em = $em;
     }
 
     /**
@@ -64,15 +72,15 @@ class UserManager extends AbstractEntityManager implements EntityManagerInterfac
      * @param array $data
      * @return void
      */
-    public function patchUser(User $user, array $data = []): void
+    public function patchUser(User $user): void
     {
+        $data = $this->requestContent;
+    
         if (isset($data['biography']) === true) $user->setBiography($data['biography']);
-        if (isset($data['firstname']) === true) $user->setFirstName($data['firstname']);
-        if (isset($data['lastname']) === true) $user->setLastName($data['lastname']);
+        if (isset($data['firstName']) === true) $user->setFirstName($data['firstName']);
+        if (isset($data['lastName']) === true) $user->setLastName($data['lastName']);
         if (isset($data['email']) === true) $user->setEmail($data['email']);
         if (isset($data['username']) === true) $user->setUsername($data['username']);
         $user->setUpdatedAt(new \DateTime());
-
-        $this->em->flush();
     }
 }

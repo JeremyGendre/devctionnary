@@ -1,3 +1,4 @@
+import { User } from './../models/user';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
@@ -13,13 +14,33 @@ export class UserService {
     this.baseHeaders = this.baseHeaders.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
    }
 
-  getMe() {
-    console.log(this.baseHeaders);
-    return this.http.get(
+  getUser(id?: number) {
+    if (id === null) {
+      return this.http.get(
+        environment.apiUrl + '/api/users/me',
+        {
+          headers: this.baseHeaders
+        }
+      );
+    }
+  }
+
+  patchMe(user: User) {
+    return this.http.patch(
       environment.apiUrl + '/api/users/me',
+      user,
       {
         headers: this.baseHeaders
       }
-    )
+    );
+  }
+
+  getUsernameAvailability(username: string) {
+    return this.http.get(
+      environment.apiUrl + '/api/users/username-availability/' + username,
+      {
+        headers: this.baseHeaders
+      }
+    );
   }
 }
