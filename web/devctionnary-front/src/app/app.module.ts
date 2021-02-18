@@ -14,19 +14,23 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './footer/footer.component';
 import { AllSnippetComponent } from './all-snippet/all-snippet.component';
+import { LoginComponent } from './login/login.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    AllSnippetComponent
+    AllSnippetComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
     BrowserModule,

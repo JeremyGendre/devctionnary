@@ -1,0 +1,6 @@
+<p>login works!</p>
+<form [formGroup]="loginForm" ngNativeValidate (submit)="onLogin($event)">
+  <input required type="text" placeholder="username" formControlName="username" />
+  <input required type="password" placeholder="password" formControlName="password" />
+  <button>Se connecter</button>
+</form>
