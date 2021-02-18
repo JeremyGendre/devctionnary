@@ -3,5 +3,5 @@ export class User {
     validated: boolean;
     createdAt: Date;
     updatedAt: Date;
-    
+    message: string;
 }

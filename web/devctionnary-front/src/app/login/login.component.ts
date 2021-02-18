@@ -1,0 +1,34 @@
+import { Component, OnInit } from '@angular/core';
+import {LoginService} from "../login.service";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
+})
+export class LoginComponent implements OnInit {
+
+  loginForm: FormGroup = new FormGroup({​​
+    username: new FormControl('',  [Validators.required, Validators.minLength(4)]),
+    password: new FormControl('',  [Validators.required, Validators.minLength(4)]),
+  });
+
+  constructor(private loginService: LoginService) { }
+
+  ngOnInit(): void {
+  }
+
+  onLogin(e) {
+    console.log(this.loginForm.get('username').value, this.loginForm.get('password').value);
+    e.preventDefault();
+    this.loginService
+      .login(this.loginForm.get('username').value, this.loginForm.get('password').value)
+      .subscribe((data: {token:string}) => {
+        //token
+        localStorage.setItem('token', data.token);
+      },error => {
+        console.error(error);
+      });
+  }
+}
