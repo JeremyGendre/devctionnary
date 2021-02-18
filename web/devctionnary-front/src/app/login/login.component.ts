@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../login.service";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('',  [Validators.required, Validators.minLength(4)]),
   });
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +27,9 @@ export class LoginComponent implements OnInit {
       .subscribe((data: {token:string}) => {
         //token
         localStorage.setItem('token', data.token);
+
+        // Redirect
+        this.router.navigate(['']);
       },error => {
         console.error(error);
       });

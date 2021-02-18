@@ -4,9 +4,9 @@
     <div class="navbar-right">
         <button mat-button  [routerLink]="'/accounts'"> Accueil </button>
         <button mat-button  [routerLink]="'/create-account'"> Mes snippets </button>
-        <button mat-button  [routerLink]="'/contacts'"> S'inscrire </button>
-        <button mat-button  [routerLink]="'/create-contact'"> Se connecter </button>
-        <button mat-button  [routerLink]="'/profile'"> Profil </button>
-        <button mat-button  [routerLink]="'/create-activity'"> Se déconnecter </button>
+        <button *ngIf="!isAuthenticated" mat-button  [routerLink]="'/contacts'"> S'inscrire </button>
+        <button *ngIf="!isAuthenticated" mat-button  [routerLink]="['/login']"> Se connecter </button>
+        <button *ngIf="isAuthenticated" mat-button  [routerLink]="['/profile']" [queryParams]="{id: null}"> Profil </button>
+        <button *ngIf="isAuthenticated" mat-button  (click)="logout()"> Se déconnecter </button>
       </div>
 </mat-toolbar>

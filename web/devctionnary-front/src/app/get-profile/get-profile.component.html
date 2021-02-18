@@ -1,15 +1,24 @@
-<h2>Mon profil</h2>
+<div class="component-content">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <h2>Mon profil</h2>
 
-<div *ngIf="user">
-  <p><strong>Nom d'utilisateur : </strong>{{ user.username }}</p>
-  <p><strong>Email : </strong>{{ user.email }}</p>
-  <p><strong>Biographie : </strong>{{ user.biography || 'n.c.' }}</p>
-  <p><strong>Prénom : </strong>{{ user.firstName }}</p>
-  <p><strong>Nom : </strong>{{ user.lastName }}</p>
-</div>
-
-<div *ngIf="!user">
-  <div id="loader" fxLayout="row" fxLayoutAlign="center center">
+    <a *ngIf="user && editAllowed === true" [routerLink]="['/modify-profile']" routerLinkActive="active">
+      <button mat-raised-button color="primary">
+        <mat-icon class="medium-icon" aria-hidden="false" aria-label="Edit profile">edit</mat-icon>
+        Modifier
+      </button>
+    </a>
+  </div>
+  
+  <div *ngIf="user" class="user-profile-show">
+    <p><strong>Nom d'utilisateur : </strong>{{ user.username }}</p>
+    <p><strong>Email : </strong>{{ user.email }}</p>
+    <p><strong>Prénom : </strong>{{ user.firstName }}</p>
+    <p><strong>Nom : </strong>{{ user.lastName }}</p>
+    <p><strong>Biographie : </strong><span [innerHTML]=user.biography></span></p>
+  </div>
+  
+  <div *ngIf="!user" id="loader" fxLayout="row" fxLayoutAlign="center center">
     <mat-spinner></mat-spinner>
-  </div>  
-</div> 
+  </div>
+</div>
