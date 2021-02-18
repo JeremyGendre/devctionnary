@@ -16,6 +16,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AllSnippetComponent } from './all-snippet/all-snippet.component';
 import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

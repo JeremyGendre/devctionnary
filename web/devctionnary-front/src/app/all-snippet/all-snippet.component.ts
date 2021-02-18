@@ -1,3 +1,4 @@
+import { Snippet } from './../models/snippet';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,55 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-snippet.component.scss']
 })
 export class AllSnippetComponent implements OnInit {
-  date : Date =  new Date()
+  allSnippets: Snippet[] = [{
+    author: 'user1',
+    content : 'helloword',
+    description : 'helloworld',
+    title:'helloworld',
+    id: '1',
+    createdAt: new Date(),
+    updatedAt : new Date(),
+  },{
+    author: 'user1',
+    content : 'helloword',
+    description : 'helloworld',
+    title:'helloworld',
+    id: '1',
+    createdAt: new Date(),
+    updatedAt : new Date(),
+  },
+  {
+    author: 'user1',
+    content : 'helloword',
+    description : 'helloworld',
+    title:'helloworld',
+    id: '1',
+    createdAt: new Date(),
+    updatedAt : new Date(),
+  },
+  {
+    author: 'user1',
+    content : 'helloword',
+    description : 'helloworld',
+    title:'helloworld',
+    id: '1',
+    createdAt: new Date(),
+    updatedAt : new Date(),
+  },
+  {
+    author: 'user1',
+    content : 'helloword',
+    description : 'helloworld',
+    title:'helloworld',
+    id: '1',
+    createdAt: new Date(),
+    updatedAt : new Date(),
+  }
+];
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  
 }
