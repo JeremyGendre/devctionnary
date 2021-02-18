@@ -58,6 +58,11 @@ Then, duplicate the .env file and create a .env.local file that you can override
 - `php bin/console cache:clear`
 - `symfony serve` to start the php development server **OR** `php -S localhost:8000`
 
+Now, in order to properly use the authentication service, you'll need to generate a ssl key pair.
+The 2 needed commands are explained in [this tutorial](https://developers.yubico.com/PIV/Guides/Generating_keys_using_OpenSSL.html).
+
+**/!\\** Before using the commands to generate the keys, make sure to be in this directory : /api/config/jwt. Or specify it directly into the command line.
+
 **OR** If you have *make* installed on your computer :
 - `make install` 
 then
