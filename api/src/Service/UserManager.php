@@ -56,4 +56,23 @@ class UserManager extends AbstractEntityManager implements EntityManagerInterfac
             || !$this->requestContent['lastname']
             || !$this->requestContent['firstname'];
     }
+
+    /**
+     * Patch a user.
+     *
+     * @param User $user
+     * @param array $data
+     * @return void
+     */
+    public function patchUser(User $user, array $data = []): void
+    {
+        if (isset($data['biography']) === true) $user->setBiography($data['biography']);
+        if (isset($data['firstname']) === true) $user->setFirstName($data['firstname']);
+        if (isset($data['lastname']) === true) $user->setLastName($data['lastname']);
+        if (isset($data['email']) === true) $user->setEmail($data['email']);
+        if (isset($data['username']) === true) $user->setUsername($data['username']);
+        $user->setUpdatedAt(new \DateTime());
+
+        $this->em->flush();
+    }
 }

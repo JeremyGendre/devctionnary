@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\UserRepository;
-use App\Service\UserService;
+use App\Service\UserManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,10 +30,10 @@ class UserController extends BaseAbstractController
     public function patchMe(
         SerializerInterface $serializer,
         Request $request,
-        UserService $userService
+        UserManager $userManager
     ): JsonResponse
     {
-        $userService->patchUser($this->getUser(), json_decode($request->getContent(), true));
+        $userManager->patchUser($this->getUser(), json_decode($request->getContent(), true));
 
         return $this->successJsonResponse($serializer->serialize($this->getUser(), 'json', ['groups' => 'getMe']));
     }
@@ -41,11 +41,11 @@ class UserController extends BaseAbstractController
     /**
      * @Route("/me", name="users_delete_me", methods={"DELETE"})
      */
-    public function deleteMe(
-        UserService $userService
-    ): JsonResponse
+    public function deleteMe(): JsonResponse
     {
-        $userService->deleteUser($this->getUser());
+        $em = $this->getDoctrine()->getManager();
+        $this->em->remove($this->getUser());
+        $this->em->flush();
 
         return $this->emptyJsonResponse();
     }
