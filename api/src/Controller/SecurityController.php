@@ -39,7 +39,7 @@ class SecurityController extends BaseAbstractController
         UserManager $userManager,
         UserRepository $userRepository
     ): JsonResponse {
-        $user = $userManager->createFromRequest();
+        $user = $userManager->create();
         if(!$user){
             return $this->errorJsonResponse("Création de compte impossible");
         }
