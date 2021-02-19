@@ -39,8 +39,6 @@ class VoteController extends BaseAbstractController
         $em->persist($vote);
         $em->flush();
 
-        return $this->successJsonResponse([
-            'id' => $vote->getId()
-        ]);
+        return $this->successJsonResponse($vote);
     }
 }
