@@ -5,10 +5,12 @@ namespace App\Controller;
 
 use App\Entity\Snippet;
 use App\Repository\SnippetRepository;
+use App\Service\SnippetManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * @Route("/api/snippets")
@@ -19,23 +21,14 @@ class SnippetController extends BaseAbstractController
     /**
     * @Route("", name="snippets_get_all", methods={"GET"})
     */
-    public function getAll(SnippetRepository $snippetRepository): JsonResponse
+    public function getAll(SnippetRepository $snippetRepository, SerializerInterface $serializer)
     {
         $snippets = $snippetRepository->findAll();
         
-        return $this->successJsonResponse($snippets);
+        //var_dump($snippets);
+        //return $snippets;
+        return $this->successJsonResponse($serializer->serialize($snippets,"json"));
     }
 
-    /**
-     * @Route("", name="snippet_add", methods={"POST"})
-     */
-    public function addSnippet(Request $request): JsonResponse 
-    {
-        $snippet = new Snippet();
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($snippet);
-        $em->flush();
-        return $this->successJsonResponse($snippet);
-    }
 }
