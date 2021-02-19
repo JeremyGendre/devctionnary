@@ -37,7 +37,6 @@ export class RegisterComponent implements OnInit {
 
   onRegister(e) {
     e.preventDefault();
-    if (this.isSubmitDisabled === false) {
       this.isLoading = true;
       this.authService
         .register(
@@ -50,7 +49,7 @@ export class RegisterComponent implements OnInit {
         .subscribe((data: any) => {
           if (data.success === true) {
             this.isLoading = false;
-            this._snackBar.open('Inscription effectuée ! Redirection en cours...', 'Fermer', {
+            this._snackBar.open('Inscription effectuée !', 'Fermer', {
               duration: 1500
             });
 
@@ -58,14 +57,15 @@ export class RegisterComponent implements OnInit {
             this.router.navigate(['/login']);
           }
         }, (error: HttpErrorResponse) => {
+          console.log(error.error);
           this.isLoading = false;
           this.dialogService.openErrorDialog();
         })
-    }
+
+
   }
 
   onUsernameChange() {
-    this.isSubmitDisabled = true;
     if (this.username.value !== '') {
       this.userService.getUsernameAvailability(this.username.value)
       .subscribe((data: {data: {available: boolean}}) => {
@@ -73,9 +73,10 @@ export class RegisterComponent implements OnInit {
           this.username.setErrors({
             'available': false
           });
-          this.isSubmitDisabled = false;
         }
-      }, (error: HttpErrorResponse) => {});
+      }, (error: HttpErrorResponse) => {
+        console.error(error.error);
+      });
     }
   }
 
