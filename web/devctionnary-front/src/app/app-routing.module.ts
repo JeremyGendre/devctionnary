@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DetailsSnippetComponent } from './details-snippet/details-snippet.component'
 import {LoginComponent} from "./login/login.component";
 import { AuthGuardService as AuthGuard } from './services/guards/auth-guard.service';
+import { AddSnipetComponent } from './add-snipet/add-snipet.component';
 
 const routes: Routes = [
   { path:'', component: AllSnippetComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile/:id', component: GetProfileComponent, canActivate: [AuthGuard] },
   { path: 'profile', redirectTo: 'profile/', pathMatch: 'full' },
-  { path: 'modify-profile', component: ModifyProfileComponent, canActivate: [AuthGuard] }
+  { path: 'modify-profile', component: ModifyProfileComponent, canActivate: [AuthGuard] },
+  { path: 'add-snipet', component: AddSnipetComponent, canActivate: [AuthGuard] },
 ]
 
 @NgModule({

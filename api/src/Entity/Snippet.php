@@ -25,7 +25,6 @@ class Snippet implements Serializable
 
     /**
      * @ORM\Column(type="string", length=255)
-
      *
      * @Assert\NotBlank
      */
@@ -33,7 +32,6 @@ class Snippet implements Serializable
 
     /**
      * @ORM\Column(type="text")
-
      *
      * @Assert\NotBlank
      */
@@ -41,7 +39,6 @@ class Snippet implements Serializable
 
     /**
      * @ORM\Column(type="datetime")
-
      *
      * @Assert\NotBlank
      */
@@ -49,15 +46,12 @@ class Snippet implements Serializable
 
     /**
      * @ORM\Column(type="datetime")
-
      *
      * @Assert\NotBlank
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * 
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;

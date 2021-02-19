@@ -1,7 +1,7 @@
 import { User } from "./user";
 
 export class Snippet {
-    id: string;
+    id: number;
     title: string;
     content: string;
     createdAt: Date;

@@ -21,15 +21,17 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FooterComponent } from './footer/footer.component';
 import { AllSnippetComponent } from './all-snippet/all-snippet.component';
 import { LoginComponent } from './login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
-import {FormsModule} from "@angular/forms";
-import { DetailsSnippetComponent } from './details-snippet/details-snippet.component';
+import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatCardModule } from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
 import { GetProfileComponent } from './get-profile/get-profile.component';
 import { ModifyProfileComponent } from './modify-profile/modify-profile.component';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
-import { MatCardModule } from '@angular/material/card';
+import { DetailsSnippetComponent } from './details-snippet/details-snippet.component';
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { RegisterComponent } from './register/register.component';
+import { AddSnipetComponent } from './add-snipet/add-snipet.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { RegisterComponent } from './register/register.component';
     FooterComponent,
     AllSnippetComponent,
     LoginComponent,
+    AddSnipetComponent,
     DetailsSnippetComponent,
     GetProfileComponent,
     ModifyProfileComponent,
@@ -50,6 +53,7 @@ import { RegisterComponent } from './register/register.component';
     AppRoutingModule,
     NoopAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
@@ -64,13 +68,14 @@ import { RegisterComponent } from './register/register.component';
     MatIconModule,
     MatGridListModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatInputModule, 
     FormsModule,
     MatProgressSpinnerModule,
     MatInputModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatCardModule, 
-    HighlightJsModule,
+    HighlightJsModule
   ],
   bootstrap: [AppComponent]
 })
