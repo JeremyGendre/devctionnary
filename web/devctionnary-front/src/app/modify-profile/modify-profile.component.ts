@@ -15,12 +15,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./modify-profile.component.scss']
 })
 export class ModifyProfileComponent implements OnInit {
-  isLoaded: boolean = false;
+  isLoading: boolean = false;
   user: User;
   isSubmitDisabled: boolean = false;
 
   profileForm = new FormGroup({
-    username: new FormControl('', Validators.required),
+    username: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -35,6 +35,7 @@ export class ModifyProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.userService.getUser(null)
     .subscribe((data: {data: {user: string}}) => {
       const user: User = JSON.parse(data.data.user);
@@ -48,8 +49,9 @@ export class ModifyProfileComponent implements OnInit {
         biography: user.biography
       });
 
-      this.isLoaded = true;
+      this.isLoading = false;
     },(error: HttpErrorResponse) => {
+      this.isLoading = false;
       if (error.status === 401) {
         this.router.navigate(['/login']);
       } else {
@@ -61,10 +63,10 @@ export class ModifyProfileComponent implements OnInit {
   onSubmit(e) {
     e.preventDefault();
     if (this.isSubmitDisabled === false) {
-      this.isLoaded = false;
+      this.isLoading = true;
       this.userService.patchMe(this.profileForm.value)
         .subscribe((data: {data: any}) => {
-          this.isLoaded = true;
+          this.isLoading = false;
           this._snackBar.open('Changements enregistrés !', 'Fermer', {
             duration: 1500
           });
@@ -75,6 +77,7 @@ export class ModifyProfileComponent implements OnInit {
         }
 
       }, (error: HttpErrorResponse) => {
+        this.isLoading = false;
         if (error.status === 401) {
           this.router.navigate(['/login']);
         } else {

@@ -33,6 +33,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   margin-right: 12px;
 }
 
+.mt-4 {
+  margin-top: 16px;
+}
+
 .form-field {
   margin-bottom: 30px;
 }
@@ -46,15 +50,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       > strong {
         color: #f44336;
       }
-  }
-}
-
-.user-profile-show {
-  width: 50%;
-}
-
-@media (max-width: 768px) {
-  .user-profile-show {
-    width: 100%;
   }
 }
