@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'profile/:id', component: GetProfileComponent, canActivate: [AuthGuard] },
   { path: 'profile', redirectTo: 'profile/', pathMatch: 'full' },
-  { path: 'modify-profile', component: ModifyProfileComponent },
+  { path: 'modify-profile', component: ModifyProfileComponent, canActivate: [AuthGuard] },
   { path: '', component: AllSnippetComponent }
 ];
 
