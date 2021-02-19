@@ -17,12 +17,17 @@ export class SnippetService {
     Accept : 'application/json'
   };
   apiUrl:string = 'http://localhost:8000';
+
   constructor(private http: HttpClient) { 
 
   }
 
   getAllSnippets(){
     return this.http.get<any>(this.apiUrl + '/api/snippets', {headers: this.header});
+  }
+
+  getSnippetById(id: number){
+    return this.http.get<any>(this.apiUrl + `/api/snippets/${id}`, { headers: this.header });
   }
 
 

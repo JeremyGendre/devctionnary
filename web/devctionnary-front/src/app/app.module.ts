@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {FormsModule} from "@angular/forms";
 import {MatCardModule} from '@angular/material/card';
+import { DetailsSnippetComponent } from './details-snippet/details-snippet.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MatCardModule} from '@angular/material/card';
     NavbarComponent,
     FooterComponent,
     AllSnippetComponent,
-    LoginComponent
+    LoginComponent,
+    DetailsSnippetComponent
   ],
   imports: [
     BrowserModule,
