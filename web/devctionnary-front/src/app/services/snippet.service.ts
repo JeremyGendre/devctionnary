@@ -7,18 +7,21 @@ import { Snippet } from '../models/snippet';
 })
 export class SnippetService {
 
-  header = new HttpHeaders({
+  header = localStorage.getItem('token') ? new HttpHeaders({
     'Content-Type': 'application/json; charset=utf-8',
     'Authorization': 'Bearer ' + localStorage.getItem('token'),
     Accept : 'application/json'
-  });
+  }) : new HttpHeaders({
+    'Content-Type': 'application/json; charset=utf-8',
+    Accept : 'application/json'
+  }) ;
   patchHeaders = {
     'Content-Type': 'application/merge-patch+json',
     Accept : 'application/json'
   };
   apiUrl:string = 'http://localhost:8000';
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
   }
 
