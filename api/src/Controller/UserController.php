@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\UserRepository;
 use App\Service\UserManager;
 use Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,10 @@ use Symfony\Component\Serializer\SerializerInterface;
 class UserController extends BaseAbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/me", name="users_get_me", methods={"GET"})
+     * @param SerializerInterface $serializer
+     * @return JsonResponse
      */
     public function getMe(
         SerializerInterface $serializer
@@ -26,7 +30,13 @@ class UserController extends BaseAbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/me", name="users_patch_me", methods={"PATCH"})
+     * @param SerializerInterface $serializer
+     * @param Request $request
+     * @param UserManager $userManager
+     * @param UserRepository $userRepository
+     * @return JsonResponse
      */
     public function patchMe(
         SerializerInterface $serializer,
@@ -54,6 +64,7 @@ class UserController extends BaseAbstractController
     }
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/me", name="users_delete_me", methods={"DELETE"})
      */
     public function deleteMe(): JsonResponse
@@ -67,6 +78,9 @@ class UserController extends BaseAbstractController
 
     /**
      * @Route("/username-availability/{username}", name="users_username_availability", methods={"GET"})
+     * @param UserRepository $userRepository
+     * @param string $username
+     * @return JsonResponse
      */
     public function getUsernameAvailability(
         UserRepository $userRepository,
@@ -79,7 +93,7 @@ class UserController extends BaseAbstractController
                 return $this->successJsonResponse(['available' => false]);
             }
         }
-        
+
         return $this->successJsonResponse(['available' => true]);
     }
 }

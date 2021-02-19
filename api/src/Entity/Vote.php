@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\VoteRepository;
+use App\Service\Serializer\Serializable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  * @ORM\Entity(repositoryClass=VoteRepository::class)
  */
-class Vote
+class Vote implements Serializable
 {
     /**
      * @ORM\Id
@@ -22,21 +23,21 @@ class Vote
 
     /**
      * @ORM\Column(type="integer")
-     * 
+     *
      * @Assert\NotBlank
      */
     private $rating;
 
     /**
      * @ORM\Column(type="datetime")
-     * 
+     *
      * @Assert\NotBlank
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
-     * 
+     *
      * @Assert\NotBlank
      */
     private $updatedAt;
@@ -122,5 +123,20 @@ class Vote
         $this->snippet = $snippet;
 
         return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function serialize(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'rating' => $this->getRating(),
+            'voter_id' => $this->getVoter()->getId(),
+            'snippet_id' => $this->getSnippet()->getId(),
+            'createdAt' => $this->getCreatedAt()->format('d/m/Y H:i'),
+            'updatedAt' => $this->getUpdatedAt()->format('d/m/Y H:i')
+        ];
     }
 }
