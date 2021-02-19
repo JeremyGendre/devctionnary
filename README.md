@@ -62,6 +62,7 @@ Move to the */api* directory and run :
 - `php bin/console doctrine:database:create`
 - `php bin/console doctrine:schema:update --force` or `php bin/console doctrine:migrations:migrate`
 - `php bin/console cache:clear`
+- Optionnaly, run `php bin/console doctrine:fixtures:load --append` 
 - `symfony serve` to start the php development server **OR** `php -S localhost:8000`
 
 Now, in order to properly use the authentication service, you'll need to generate a ssl key pair.
