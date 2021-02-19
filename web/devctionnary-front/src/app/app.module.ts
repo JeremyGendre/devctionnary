@@ -15,7 +15,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { FooterComponent } from './footer/footer.component';
 import { AllSnippetComponent } from './all-snippet/all-snippet.component';
 import { LoginComponent } from './login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatCardModule } from '@angular/material/card';
+import { AddSnipetComponent } from './add-snipet/add-snipet.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,13 +28,15 @@ import {ReactiveFormsModule} from "@angular/forms";
     NavbarComponent,
     FooterComponent,
     AllSnippetComponent,
-    LoginComponent
+    LoginComponent,
+    AddSnipetComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
     FlexLayoutModule,
+    FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
@@ -42,7 +49,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
