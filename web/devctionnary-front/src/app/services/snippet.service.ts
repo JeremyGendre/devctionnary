@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Snippet } from '../models/snippet';
 
 @Injectable({
@@ -17,6 +18,7 @@ export class SnippetService {
     Accept : 'application/json'
   };
   apiUrl:string = 'http://localhost:8000';
+  baseHeaders = new HttpHeaders();
   constructor(private http: HttpClient) { 
 
   }
@@ -24,6 +26,13 @@ export class SnippetService {
   getAllSnippets(){
     return this.http.get<any>(this.apiUrl + '/api/snippets', {headers: this.header});
   }
-
-
+  addSnippet(snippet: any){
+    return this.http.post(
+      environment.apiUrl + '/api/snippets',
+      snippet,
+      {​​
+        headers: this.header
+      }​​
+    );
+  }
 }

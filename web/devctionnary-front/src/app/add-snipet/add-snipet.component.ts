@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SnippetService } from './../services/snippet.service';
 import { Snippet } from '../models/snippet';
 import { User } from '../models/user';
 import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-snipet',
@@ -10,46 +13,37 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class AddSnipetComponent implements OnInit {
 
+  baseHeaders = new HttpHeaders();
+
+  constructor(private snippetService: SnippetService, private http: HttpClient) {
+      this.baseHeaders = this.baseHeaders.set('Content-Type', 'application/json; charset=utf-8');
+      this.baseHeaders = this.baseHeaders.set('Authorization', `Bearer ${​​localStorage.getItem('token')}​​`);
+   }
+
   addSnipetForm = new FormGroup({
     title: new FormControl(''),
     description: new FormControl(''),
     content: new FormControl('')
   });
-
   onSubmit() {
-    // TODO: Use EventEmitter with form value
+    console.log(this.addSnippet());
     console.warn(this.addSnipetForm.value);
+
   }
 
-  user: User = {​​
-    id: '1',
-    username: 'test',
-    email: '',
-    roles: ['fsfs'],
-    biography: 'dsqdqsd',
-    firstName: 'qfqfq',
-    lastName: 'qfqfq',
-    password: 'test',
-    createdAt: new Date(),
-    updatedAt: new Date()
-  }​​
-  snipet: Snippet = {
-    id: 1,
-    title: 'UnSnipet',
-    content: "<h1>COUCOU JE SUIS LE CODE</h1>",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    description: "une description",
-    author: this.user
-  };
-
-  constructor() { }
+  addSnippet(){
+    this.snippetService.addSnippet(this.addSnipetForm.value)
+    .subscribe(
+      (data) => {​​
+        console.log(data);
+      }​​,
+      (err: HttpErrorResponse) => {​​
+        console.error(err.error);
+      }​​
+    );
+    console.warn("start addSnippet");
+  }
 
   ngOnInit(): void {
   }
-
-  addSnipet(){
-    console.log("test");
-  }
-
 }

@@ -30,5 +30,24 @@ class SnippetController extends BaseAbstractController
         return $this->successJsonResponse($serializer->serialize($snippets,"json"));
     }
 
+        /**
+
+     * @Route("", name="snippet_add", methods={​​"POST"}​​)
+
+     */
+
+    public function addSnippet(SnippetManager $snippetManager): JsonResponse 
+    {​​
+        $snippet = $snippetManager->create();
+        dd($snippet);
+        if (!$snippet)
+        {​​
+            return $this->errorJsonResponse("Erreur d'ajout du snippet");
+        }​​
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($snippet);
+        $em->flush();
+        return $this->successJsonResponse($snippet);
+    }​​
 
 }

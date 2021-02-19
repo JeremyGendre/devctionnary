@@ -3,7 +3,7 @@
     <mat-card-title>Ajouter un snipet</mat-card-title>
   </mat-card-header> 
   <mat-card-content>
-    <form [formGroup]="addSnipetForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="addSnipetForm" (submit)="onSubmit()">
         <div>
             <label>Nom:
                 <input formControlName="title" placeholder="name"/>
