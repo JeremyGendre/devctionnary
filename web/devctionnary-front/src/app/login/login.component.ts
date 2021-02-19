@@ -34,7 +34,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', data.token);
 
         // Redirect
+        if (!localStorage.getItem('token')){
+          console.log("erreur token")
+        }
         this.router.navigate(['/']);
+
       }, (error: HttpErrorResponse) => {
         if (error.status === 401) {
           this.formError = 'Problème rencontré, veuillez vérifier vos identifiants, puis réessayez';

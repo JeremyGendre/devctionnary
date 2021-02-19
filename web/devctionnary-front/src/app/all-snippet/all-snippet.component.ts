@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./all-snippet.component.scss']
 })
 export class AllSnippetComponent implements OnInit {
-  allSnippets: Snippet[] = [];
+  allSnippets: Snippet[];
 
   constructor(private snippetService: SnippetService, private router: Router) { }
 
@@ -19,9 +19,9 @@ export class AllSnippetComponent implements OnInit {
   }
 
   getAllSnippets(){
+    this.allSnippets = [];
     this.snippetService.getAllSnippets().subscribe((data) => {
-
-      this.allSnippets = JSON.parse(data.data);
+      this.allSnippets = data.data;
       console.log(this.allSnippets);
     },
     (err: HttpErrorResponse)=>{

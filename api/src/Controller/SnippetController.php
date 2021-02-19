@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Snippet;
 use App\Repository\SnippetRepository;
+use App\Service\Serializer\Serializer;
 use App\Service\SnippetManager;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,7 +26,7 @@ class SnippetController extends BaseAbstractController
         
         //var_dump($snippets);
         //return $snippets;
-        return $this->successJsonResponse($serializer->serialize($snippets,"json"));
+        return $this->successJsonResponse(Serializer::serializeMany($snippets));
     }
 
     
@@ -54,6 +55,6 @@ class SnippetController extends BaseAbstractController
     */
     public function getOneSnippet( Snippet $snippet, SerializerInterface $serializer)
     {   
-        return $this->successJsonResponse($serializer->serialize($snippet,"json"));
+        return $this->successJsonResponse($snippet->serialize());
     }
 }

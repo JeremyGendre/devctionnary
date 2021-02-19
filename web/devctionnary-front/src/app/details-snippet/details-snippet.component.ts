@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class DetailsSnippetComponent implements OnInit {
 
-  snippet: Snippet;
+  snippet: Snippet = <Snippet>{};
   id: number;
 
   constructor(private snippetService: SnippetService, private route: ActivatedRoute, private router: Router) { }
@@ -20,15 +20,19 @@ export class DetailsSnippetComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.snippetService.getSnippetById(this.id).subscribe(
       (data) => {
-        if (!data.data){
+        if (!data || !data.data){
           this.router.navigate(['/']);
         }
-        this.snippet = JSON.parse(data.data);
+        this.snippet = data.data;
         console.log(this.snippet);
       },
       (err: HttpErrorResponse) => {
         console.error(err.error);
       });
+  }
+
+  back(){
+    this.router.navigate(['/']);
   }
 
 }

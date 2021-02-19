@@ -28,6 +28,7 @@ import { GetProfileComponent } from './get-profile/get-profile.component';
 import { ModifyProfileComponent } from './modify-profile/modify-profile.component';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
 import { MatCardModule } from '@angular/material/card';
+import { HighlightJsModule } from 'ngx-highlight-js';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule, 
+    HighlightJsModule,
   ],
   bootstrap: [AppComponent]
 })
