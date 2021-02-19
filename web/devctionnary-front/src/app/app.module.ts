@@ -75,8 +75,6 @@ import { AddSnipetComponent } from './add-snipet/add-snipet.component';
     MatInputModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatCardModule
-    MatCardModule, 
     HighlightJsModule
   ],
   bootstrap: [AppComponent]
