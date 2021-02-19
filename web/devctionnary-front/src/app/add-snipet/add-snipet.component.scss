@@ -1,3 +1,14 @@
-.addSnipet{
-    margin: 10px;
-}
+#addSnippet-form-card {
+    width:60%;
+  
+    mat-form-field {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #addSnippet-form-card {
+      width: 90%;
+    }
+  }
+  
