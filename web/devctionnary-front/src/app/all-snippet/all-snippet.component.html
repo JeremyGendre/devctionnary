@@ -1,1 +1,17 @@
-Date est  : {{ date | date}}
+
+  <div *ngFor='let snippet of allSnippets | keyvalue'> 
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{snippet.value}}</mat-card-title>
+        <mat-card-subtitle>{{snippet.author}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{snippet.content}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

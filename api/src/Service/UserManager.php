@@ -6,33 +6,27 @@ namespace App\Service;
 
 use App\Entity\User;
 use Exception;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserManager
+class UserManager extends AbstractEntityManager implements EntityManagerInterface
 {
     /**
      * @var UserPasswordEncoderInterface
      */
     private $passwordEncoder;
 
-    /**
-     * @var mixed
-     */
-    private $requestContent;
-
     public function __construct(
         UserPasswordEncoderInterface $passwordEncoder
     ){
+        parent::__construct();
         $this->passwordEncoder = $passwordEncoder;
-        $this->requestContent = $this->setUpRequestContent();
     }
 
     /**
      * @return User|null
      * @throws Exception
      */
-    public function createFromRequest()
+    public function create()
     {
         if($this->isBadRequest()){
             return null;
@@ -52,21 +46,9 @@ class UserManager
     }
 
     /**
-     * @return array
-     */
-    private function setUpRequestContent(): array
-    {
-        $request = Request::createFromGlobals();
-        if(!$request->getContent()){
-            return [];
-        }
-        return json_decode($request->getContent(), true);
-    }
-
-    /**
      * @return bool
      */
-    private function isBadRequest(): bool
+    public function isBadRequest(): bool
     {
         return !$this->requestContent['password']
             || !$this->requestContent['username']

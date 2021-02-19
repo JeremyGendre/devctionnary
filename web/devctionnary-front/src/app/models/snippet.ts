@@ -7,5 +7,6 @@ export class Snippet {
     createdAt: Date;
     updatedAt: Date;
     description: string;
-    author: User;
+    //author: User;
+    author: string;
 }
