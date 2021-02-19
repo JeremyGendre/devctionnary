@@ -4,8 +4,10 @@
 namespace App\Controller;
 
 use App\Entity\Snippet;
+use App\Service\Serializer\Serializer;
 use App\Service\VoteManager;
 use Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,6 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class VoteController extends BaseAbstractController
 {
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="vote_post_one", methods={"POST"})
      * @param Snippet $snippet
      * @param VoteManager $voteManager
@@ -33,8 +36,22 @@ class VoteController extends BaseAbstractController
             return $this->errorJsonResponse("Création du vote impossible");
         }
 
-        return $this->successJsonResponse([
-            'id' => $vote->getId()
-        ]);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($vote);
+        $em->flush();
+
+        return $this->successJsonResponse($vote);
+    }
+
+    /**
+     * @Route("/{id}/get-votes", name="get_vote_from_snippet", methods={"GET"})
+     * @param Snippet $snippet
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function getVoteFromSnippet(
+        Snippet $snippet
+    ): JsonResponse {
+        return $this->successJsonResponse(Serializer::serializeMany($snippet->getVotes()));
     }
 }

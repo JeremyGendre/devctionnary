@@ -1,0 +1,87 @@
+<div *ngIf="!isLoading" fxLayout="row" fxLayoutAlign="center center" class="mt-4">
+  <mat-card id="modify-profile-form-card">
+    <mat-card-header>
+      <mat-card-title>Modification du profil</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="profileForm" (submit)="onSubmit($event)">
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input (input)="onUsernameChange()" formControlName="username" matInput placeholder="Nom d'utilisateur">
+    
+              <mat-hint>Si vous changez votre nom d'utilisateur, vous serez redirigé vers la connexion.</mat-hint>
+    
+              <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.required">
+                Le nom d'utilisateur est obligatoire.
+              </mat-error>
+    
+              <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.available === false">
+                Le nom d'utilisateur est déjà pris.
+              </mat-error>
+
+              <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.minlength">
+                Le nom d'utilisateur doit comporter plus de 4 caractères.
+              </mat-error>
+    
+          </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Adresse email</mat-label>
+            <input formControlName="email" matInput placeholder="Email">
+    
+            <mat-error *ngIf="email.invalid && (email.dirty || email.touched) && email.errors.required">
+              L'adresse email est obligatoire.
+            </mat-error>
+    
+            <mat-error *ngIf="email.invalid && (email.dirty || email.touched) && email.errors.email">
+              L'adresse email est invalide.
+            </mat-error>
+          </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Prénom</mat-label>
+            <input formControlName="firstName" matInput placeholder="Prénom">
+    
+            <mat-error *ngIf="firstName.invalid && (firstName.dirty || firstName.touched) && firstName.errors.required">
+              Le prénom est obligatoire.
+            </mat-error>
+    
+          </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Nom</mat-label>
+            <input formControlName="lastName" matInput placeholder="Nom">
+    
+            <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched) && lastName.errors.required">
+              Le nom est obligatoire.
+            </mat-error>
+    
+          </mat-form-field>
+        </div>
+    
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Biographie</mat-label>
+            <textarea formControlName="biography" matInput placeholder="Petite description de vous"></textarea>
+          </mat-form-field>
+        </div>
+    
+        <button mat-raised-button color="primary" [disabled]="!profileForm.valid">
+          <mat-icon class="medium-icon" aria-hidden="false" aria-label="Save profile">save</mat-icon>
+          Enregistrer
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="isLoading" id="loader" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>

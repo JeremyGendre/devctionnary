@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -22,6 +24,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * 
+     * @Assert\NotBlank
+     * 
+     * @Groups({"getMe"})
      */
     private $username;
 
@@ -38,31 +44,49 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank
+     * 
+     * @Groups({"getMe"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * 
+     * @Groups({"getMe"})
      */
     private $biography;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank
+     * 
+     * @Groups({"getMe"})
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * 
+     * @Assert\NotBlank
+     * 
+     * @Groups({"getMe"})
      */
     private $lastName;
 
     /**
      * @ORM\Column(type="datetime")
+     * 
+     * @Assert\NotBlank
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
+     * 
+     * @Assert\NotBlank
      */
     private $updatedAt;
 
@@ -83,6 +107,8 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
         $this->snippets = new ArrayCollection();
         $this->votes = new ArrayCollection();
         $this->snippetValidations = new ArrayCollection();
