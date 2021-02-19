@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SnippetService } from './../services/snippet.service';
 import { Snippet } from '../models/snippet';
 import { User } from '../models/user';

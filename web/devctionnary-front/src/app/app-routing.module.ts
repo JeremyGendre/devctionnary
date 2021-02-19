@@ -3,9 +3,9 @@ import { ModifyProfileComponent } from './modify-profile/modify-profile.componen
 import { GetProfileComponent } from './get-profile/get-profile.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddSnipetComponent } from './add-snipet/add-snipet.component';
 import {LoginComponent} from "./login/login.component";
 import { AuthGuardService as AuthGuard } from './services/guards/auth-guard.service';
+import { AddSnipetComponent } from './add-snipet/add-snipet.component';
 
 const routes: Routes = [
   { path:'', component: AllSnippetComponent},
