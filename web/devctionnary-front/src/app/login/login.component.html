@@ -1,0 +1,47 @@
+<div *ngIf="!isLoading" fxLayout="row" fxLayoutAlign="center center" class="mt-4">
+  <mat-card id="login-form-card">
+    <mat-card-header>
+      <mat-card-title>Connexion</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p id="form-error-message" *ngIf="formError">
+        <mat-icon class="medium-icon error-icon" aria-hidden="false" aria-label="Error">error</mat-icon>
+        {{ formError }}
+      </p>
+
+      <form [formGroup]="loginForm" ngNativeValidate (submit)="onLogin($event)">
+
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput required type="text" placeholder="username" formControlName="username" />
+
+            <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.minlength">
+              Le nom d'utilisateur doit comporter plus de 4 caractères.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Mot de passe</mat-label>
+            <input matInput required type="password" placeholder="password" formControlName="password" />
+
+            <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.errors.minlength">
+              Le mot de passe doit comporter plus de 4 caractères.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" [disabled]="!loginForm.valid">
+          <mat-icon class="medium-icon" aria-hidden="false" aria-label="Save profile">login</mat-icon>
+          Connexion
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="isLoading" id="loader" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>

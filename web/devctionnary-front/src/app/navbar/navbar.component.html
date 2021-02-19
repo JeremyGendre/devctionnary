@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+    <span>Devctionnary</span>
+    <span class="example-spacer"></span>
+    <div class="navbar-right">
+        <button mat-button  [routerLink]="'/'"> Accueil </button>
+        <button mat-button [routerLink]="'/add-snipet'" > Ajouter mes snippets </button>
+        <button *ngIf="!isAuthenticated" mat-button  [routerLink]="['/register']"> S'inscrire </button>
+        <button *ngIf="!isAuthenticated" mat-button  [routerLink]="['/login']"> Se connecter </button>
+        <button *ngIf="isAuthenticated" mat-button  [routerLink]="['/profile']" [queryParams]="{id: null}"> Profil </button>
+        <button *ngIf="isAuthenticated" mat-button  (click)="logout()"> Se déconnecter </button>
+      </div>
+</mat-toolbar>

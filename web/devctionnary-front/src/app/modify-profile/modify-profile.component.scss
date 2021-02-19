@@ -1,0 +1,17 @@
+#modify-profile-form-card {
+  width:50%;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #modify-profile-form-card {
+    width: 90%;
+  }
+}
+
+#form-error-message {
+  color: #f44336;
+}

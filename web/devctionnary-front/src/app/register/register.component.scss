@@ -1,0 +1,13 @@
+#register-form-card {
+  width:50%;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  #register-form-card {
+    width: 90%;
+  }
+}

@@ -1,0 +1,13 @@
+<div class="error-modal">
+  <div mat-dialog-title class="error-modal-title">
+    <mat-icon class="medium-icon error-icon" aria-hidden="false" aria-label="Error">error</mat-icon>
+    <strong>Erreur</strong>
+  </div>
+
+  <mat-dialog-content fxLayout="column" fxLayoutAlign="center">
+    <p>Une erreur inconnue est survenue.</p>
+    <button mat-raised-button color="primary" (click)="reload()">
+      Recharger la page
+    </button>
+  </mat-dialog-content>
+</div>

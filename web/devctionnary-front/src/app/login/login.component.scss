@@ -1,0 +1,17 @@
+#login-form-card {
+  width:50%;
+
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+#form-error-message {
+  color: #f44336;
+}
+
+@media (max-width: 768px) {
+  #login-form-card {
+    width: 90%;
+  }
+}

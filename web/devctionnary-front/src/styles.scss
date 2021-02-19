@@ -1,0 +1,54 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+#loader {
+  position: absolute;
+  width: 400px;
+  height: 300px;
+  top:0;
+  bottom:0;
+  left:0;
+  right: 0;
+  margin: auto;
+}
+
+.component-content {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.medium-icon {
+  font-size: 20px;
+}
+
+.w-100 {
+  width: 50%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.mr-3 {
+  margin-right: 12px;
+}
+
+.mt-4 {
+  margin-top: 16px;
+}
+
+.form-field {
+  margin-bottom: 30px;
+}
+
+.error-icon {
+  color: #f44336;
+}
+
+.error-modal {
+  > .error-modal-title {
+      > strong {
+        color: #f44336;
+      }
+  }
+}
