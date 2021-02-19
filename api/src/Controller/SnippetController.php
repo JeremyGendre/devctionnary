@@ -5,11 +5,12 @@ namespace App\Controller;
 
 use App\Entity\Snippet;
 use App\Repository\SnippetRepository;
+use App\Service\Serializer\Serializer;
 use App\Service\SnippetManager;
+use Exception;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -19,29 +20,48 @@ use Symfony\Component\Serializer\SerializerInterface;
 class SnippetController extends BaseAbstractController
 {
     /**
-    * @Route("", name="snippets_get_all", methods={"GET"})
-    */
-    public function getAll(SnippetRepository $snippetRepository, SerializerInterface $serializer)
+     * @Route("", name="snippets_get_all", methods={"GET"})
+     * @param SnippetRepository $snippetRepository
+     * @param SerializerInterface $serializer
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function getAll(SnippetRepository $snippetRepository, SerializerInterface $serializer): JsonResponse
     {
         $snippets = $snippetRepository->findAll();
-        
-        //var_dump($snippets);
-        //return $snippets;
-        return $this->successJsonResponse($serializer->serialize($snippets,"json"));
+        return $this->successJsonResponse(Serializer::serializeMany($snippets));
     }
 
+
     /**
-    * @Route("", name="snippets_add", methods={"POST"})
-    */
+     * @IsGranted("ROLE_USER")
+     * @Route("", name="snippet_add", methods={"POST"})
+     * @param SnippetManager $snippetManager
+     * @return JsonResponse
+     */
     public function addSnippet(SnippetManager $snippetManager): JsonResponse
     {
         $snippet = $snippetManager->create();
+
         if (!$snippet) {
             return $this->errorJsonResponse("Erreur d'ajout du snippet");
         }
+
         $em = $this->getDoctrine()->getManager();
         $em->persist($snippet);
         $em->flush();
         return $this->successJsonResponse($snippet);
+    }
+
+
+    /**
+     * @Route("/{id}", name="snippets_get_one", methods={"GET"})
+     * @param Snippet $snippet
+     * @param SerializerInterface $serializer
+     * @return JsonResponse
+     */
+    public function getOneSnippet( Snippet $snippet, SerializerInterface $serializer): JsonResponse
+    {
+        return $this->successJsonResponse($snippet->serialize());
     }
 }

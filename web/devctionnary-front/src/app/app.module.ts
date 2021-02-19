@@ -28,6 +28,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { GetProfileComponent } from './get-profile/get-profile.component';
 import { ModifyProfileComponent } from './modify-profile/modify-profile.component';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
+import { DetailsSnippetComponent } from './details-snippet/details-snippet.component';
+import { HighlightJsModule } from 'ngx-highlight-js';
+import { RegisterComponent } from './register/register.component';
 import { AddSnipetComponent } from './add-snipet/add-snipet.component';
 
 @NgModule({
@@ -38,10 +41,12 @@ import { AddSnipetComponent } from './add-snipet/add-snipet.component';
     AllSnippetComponent,
     LoginComponent,
     AddSnipetComponent,
+    DetailsSnippetComponent,
     GetProfileComponent,
     ModifyProfileComponent,
     ErrorModalComponent,
-    DialogConfirmUserDeletionComponent
+    DialogConfirmUserDeletionComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +76,8 @@ import { AddSnipetComponent } from './add-snipet/add-snipet.component';
     MatSnackBarModule,
     MatDialogModule,
     MatCardModule
+    MatCardModule, 
+    HighlightJsModule
   ],
   bootstrap: [AppComponent]
 })

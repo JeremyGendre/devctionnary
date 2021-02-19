@@ -24,6 +24,7 @@
     "@angular/router": "~10.2.0",
     "@auth0/angular-jwt": "^5.0.2",
     "@ckeditor/ckeditor5-angular": "^2.0.1",
+    "ngx-highlight-js": "^11.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

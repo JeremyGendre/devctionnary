@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\UserRepository;
 use App\Service\UserManager;
+use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -44,19 +45,22 @@ class UserController extends BaseAbstractController
         UserRepository $userRepository
     ): JsonResponse
     {
-        if ($request->request->get('username') !== $this->getUser()->getUsername()) {
-            $existingUser = $userRepository->findOneBy(['username' => $request->request->get('username')]);
-            if($existingUser){
-                return $this->errorJsonResponse("Un utilisateur existe déjà avec le nom '" . $existingUser->getUsername() . "'");
+        try {
+            if ($request->request->get('username') !== $this->getUser()->getUsername()) {
+                $existingUser = $userRepository->findOneBy(['username' => $request->request->get('username')]);
+                if($existingUser){
+                    return $this->errorJsonResponse("Un utilisateur existe déjà avec le nom '" . $existingUser->getUsername() . "'");
+                }
             }
-        }
-
-        $userManager->patchUser($this->getUser());
-
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
-
-        return $this->successJsonResponse($serializer->serialize($this->getUser(), 'json', ['groups' => 'getMe']));
+    
+            $userManager->patchUser($this->getUser());
+    
+            return $this->successJsonResponse([
+                $serializer->serialize($this->getUser(), 'json', ['groups' => 'getMe'])
+            ]);
+        } catch (Exception $e) {
+            return $this->errorJsonResponse(($e->getMessage() ?? 'Une erreur est survenue'));
+        }  
     }
 
     /**
