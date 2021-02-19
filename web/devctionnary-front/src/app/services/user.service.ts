@@ -12,6 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.baseHeaders = this.baseHeaders.set('Content-Type', 'application/json; charset=utf-8');
     this.baseHeaders = this.baseHeaders.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    this.baseHeaders = this.baseHeaders.set('Accept', 'application/json');
    }
 
   getUser(id?: number) {
@@ -25,10 +26,13 @@ export class UserService {
     }
   }
 
-  patchMe(user: User) {
+  patchMe(user: User, password: string) {
     return this.http.patch(
       environment.apiUrl + '/api/users/me',
-      user,
+      {
+        ...user,
+        password: password
+      },
       {
         headers: this.baseHeaders
       }

@@ -4,6 +4,11 @@
       <mat-card-title>Modification du profil</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+      <p id="form-error-message" *ngIf="formError">
+        <mat-icon class="medium-icon error-icon" aria-hidden="false" aria-label="Error">error</mat-icon>
+        {{ formError }}
+      </p>
+      
       <form [formGroup]="profileForm" (submit)="onSubmit($event)">
         <div class="form-field">
           <mat-form-field>
@@ -23,7 +28,6 @@
               <mat-error *ngIf="username.invalid && (username.dirty || username.touched) && username.errors.minlength">
                 Le nom d'utilisateur doit comporter plus de 4 caractères.
               </mat-error>
-    
           </mat-form-field>
         </div>
     
@@ -62,7 +66,6 @@
             <mat-error *ngIf="lastName.invalid && (lastName.dirty || lastName.touched) && lastName.errors.required">
               Le nom est obligatoire.
             </mat-error>
-    
           </mat-form-field>
         </div>
     
@@ -70,6 +73,21 @@
           <mat-form-field>
             <mat-label>Biographie</mat-label>
             <textarea formControlName="biography" matInput placeholder="Petite description de vous"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="form-field">
+          <mat-form-field>
+            <mat-label>Mot de passe actuel</mat-label>
+            <input type="password" formControlName="password" matInput placeholder="Mot de passe actuel">
+
+            <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.errors.required">
+              Le mot de passe est obligatoire.
+            </mat-error>
+
+            <mat-error *ngIf="password.invalid && (password.dirty || password.touched) && password.errors.minlength">
+              Le mot de passe contient plus de 4 caractères.
+            </mat-error>
           </mat-form-field>
         </div>
     

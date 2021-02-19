@@ -26,6 +26,7 @@ import { GetProfileComponent } from './get-profile/get-profile.component';
 import { ModifyProfileComponent } from './modify-profile/modify-profile.component';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
 import { MatCardModule } from '@angular/material/card';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MatCardModule } from '@angular/material/card';
     GetProfileComponent,
     ModifyProfileComponent,
     ErrorModalComponent,
-    DialogConfirmUserDeletionComponent
+    DialogConfirmUserDeletionComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

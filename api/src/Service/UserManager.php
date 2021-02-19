@@ -7,6 +7,8 @@ namespace App\Service;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface as EntityManager;
 use Exception;
+use LogicException;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserManager extends AbstractEntityManager implements EntityManagerInterface
@@ -21,13 +23,20 @@ class UserManager extends AbstractEntityManager implements EntityManagerInterfac
      */
     private $em;
 
+    /**
+     * @var TokenSTorageInterface
+     */
+    private $tokenStorage;
+
     public function __construct(
         UserPasswordEncoderInterface $passwordEncoder,
-        EntityManager $em
+        EntityManager $em,
+        TokenStorageInterface $tokenStorageInterface
     ){
         parent::__construct();
         $this->passwordEncoder = $passwordEncoder;
         $this->em = $em;
+        $this->tokenStorage = $tokenStorageInterface;
     }
 
     /**
@@ -74,13 +83,25 @@ class UserManager extends AbstractEntityManager implements EntityManagerInterfac
      */
     public function patchUser(User $user): void
     {
-        $data = $this->requestContent;
-    
-        if (isset($data['biography']) === true) $user->setBiography($data['biography']);
-        if (isset($data['firstName']) === true) $user->setFirstName($data['firstName']);
-        if (isset($data['lastName']) === true) $user->setLastName($data['lastName']);
-        if (isset($data['email']) === true) $user->setEmail($data['email']);
-        if (isset($data['username']) === true) $user->setUsername($data['username']);
-        $user->setUpdatedAt(new \DateTime());
+        // Check password
+        $plainPassword = $this->requestContent['password'];
+
+        if ($plainPassword !== null) {
+            if ($this->passwordEncoder->isPasswordValid($user, $plainPassword) === true) {
+                if ($this->requestContent['biography']) $user->setBiography($this->requestContent['biography']);
+                if ($this->requestContent['firstName']) $user->setFirstName($this->requestContent['firstName']);
+                if ($this->requestContent['lastName']) $user->setLastName($this->requestContent['lastName']);
+                if ($this->requestContent['email']) $user->setEmail($this->requestContent['email']);
+                if ($this->requestContent['username']) $user->setUsername($this->requestContent['username']);
+                $user->setUpdatedAt(new \DateTime());
+
+            } else{
+                throw new LogicException('Le mot de passe actuel n\'est pas correct');
+            }
+        } else {
+            throw new LogicException('Le mot de passe actuel n\'est pas renseigné');
+        }
+
+        $this->em->flush();
     }
 }
