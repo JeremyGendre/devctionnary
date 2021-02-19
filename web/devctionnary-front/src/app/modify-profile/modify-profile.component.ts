@@ -103,13 +103,7 @@ export class ModifyProfileComponent implements OnInit {
           });
           this.isSubmitDisabled = false;
         }
-      }, (error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          this.router.navigate(['/login']);
-        } else {
-          this.dialogService.openErrorDialog();
-        }
-      });
+      }, (error: HttpErrorResponse) => {});
     }
   }
 
