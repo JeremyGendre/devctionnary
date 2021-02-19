@@ -1,5 +1,4 @@
 import { DialogConfirmUserDeletionComponent } from './get-profile/dialog-confirm/dialog-confirm-user-deletion.component';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
 
@@ -26,6 +25,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { GetProfileComponent } from './get-profile/get-profile.component';
 import { ModifyProfileComponent } from './modify-profile/modify-profile.component';
 import { ErrorModalComponent } from './error-modal/error-modal.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -60,7 +60,8 @@ import { ErrorModalComponent } from './error-modal/error-modal.component';
     MatProgressSpinnerModule,
     MatInputModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   bootstrap: [AppComponent]
 })
