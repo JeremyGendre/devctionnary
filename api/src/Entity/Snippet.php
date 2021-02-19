@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\SnippetRepository;
-use App\Service\Serializer\Serializable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -14,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ApiResource()
  * @ORM\Entity(repositoryClass=SnippetRepository::class)
  */
-class Snippet implements Serializable
+class Snippet
 {
     /**
      * @ORM\Id
@@ -201,17 +200,5 @@ class Snippet implements Serializable
         $this->snippetValidation = $snippetValidation;
 
         return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function serialize(): array
-    {
-        return [
-            'id' => $this->getId(),
-            'title' => $this->getTitle(),
-            'content' => $this->getContent()
-        ];
     }
 }
