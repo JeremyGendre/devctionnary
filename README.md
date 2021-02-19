@@ -13,6 +13,9 @@
  
 # WEB (front)
 
+Move into the */web/devctionnary-front* directory and run `npm install`.
+Then run `ng serve` to run the development server and browse through the application.
+
 ## DevctionnaryFront
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
@@ -51,6 +54,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Then, duplicate the .env file and create a .env.local file that you can override in order to fill in the right information about the database and so on.
 
 ### Commands
+
+Move to the */api* directory and run :
+
 - `composer install`
 - `php bin/console doctrine:database:drop --if-exists --force`
 - `php bin/console doctrine:database:create`

@@ -1,4 +1,4 @@
-#login-form-card {
+#modify-profile-form-card {
   width:50%;
 
   mat-form-field {
@@ -6,12 +6,8 @@
   }
 }
 
-#form-error-message {
-  color: #f44336;
-}
-
 @media (max-width: 768px) {
-  #login-form-card {
+  #modify-profile-form-card {
     width: 90%;
   }
 }

@@ -1,0 +1,13 @@
+<h3 mat-dialog-title>Suppression de mon compte</h3>
+<div mat-dialog-content>Etes-vous sûr de vouloir supprimer votre compte ?</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Fermer</button>
+  <button mat-raised-button mat-dialog-close color="warn" (click)="deleteAccount()">
+    <mat-icon class="medium-icon" aria-hidden="false" aria-label="Delete account">delete</mat-icon>
+    Suppression
+  </button>
+</div>
+
+<div *ngIf="isLoading" id="loader" fxLayout="row" fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>
