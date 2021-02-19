@@ -29,6 +29,7 @@ import { ModifyProfileComponent } from './modify-profile/modify-profile.componen
 import { ErrorModalComponent } from './error-modal/error-modal.component';
 import { MatCardModule } from '@angular/material/card';
 import { HighlightJsModule } from 'ngx-highlight-js';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HighlightJsModule } from 'ngx-highlight-js';
     GetProfileComponent,
     ModifyProfileComponent,
     ErrorModalComponent,
-    DialogConfirmUserDeletionComponent
+    DialogConfirmUserDeletionComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-#modify-profile-form-card {
+#register-form-card {
   width:50%;
 
   mat-form-field {
@@ -7,11 +7,7 @@
 }
 
 @media (max-width: 768px) {
-  #modify-profile-form-card {
+  #register-form-card {
     width: 90%;
   }
-}
-
-#form-error-message {
-  color: #f44336;
 }

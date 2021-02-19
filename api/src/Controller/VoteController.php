@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Snippet;
+use App\Service\Serializer\Serializer;
 use App\Service\VoteManager;
 use Exception;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -40,5 +41,17 @@ class VoteController extends BaseAbstractController
         $em->flush();
 
         return $this->successJsonResponse($vote);
+    }
+
+    /**
+     * @Route("/{id}/get-votes", name="get_vote_from_snippet", methods={"GET"})
+     * @param Snippet $snippet
+     * @return JsonResponse
+     * @throws Exception
+     */
+    public function getVoteFromSnippet(
+        Snippet $snippet
+    ): JsonResponse {
+        return $this->successJsonResponse(Serializer::serializeMany($snippet->getVotes()));
     }
 }

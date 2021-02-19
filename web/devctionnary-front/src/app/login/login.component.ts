@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../login.service";
-import {FormGroup, FormControl, Validators} from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.isLoading = true;
     this.formError = null;
     this.loginService
-      .login(this.loginForm.get('username').value, this.loginForm.get('password').value)
+      .login(this.username.value, this.loginForm.get('password').value)
       .subscribe((data: {token:string}) => {
         //token
         localStorage.setItem('token', data.token);

@@ -4,7 +4,7 @@
     <div class="navbar-right">
         <button mat-button  [routerLink]="'/'"> Accueil </button>
         <button mat-button  > Mes snippets </button>
-        <button *ngIf="!isAuthenticated" mat-button  [routerLink]="'/contacts'"> S'inscrire </button>
+        <button *ngIf="!isAuthenticated" mat-button  [routerLink]="['/register']"> S'inscrire </button>
         <button *ngIf="!isAuthenticated" mat-button  [routerLink]="['/login']"> Se connecter </button>
         <button *ngIf="isAuthenticated" mat-button  [routerLink]="['/profile']" [queryParams]="{id: null}"> Profil </button>
         <button *ngIf="isAuthenticated" mat-button  (click)="logout()"> Se déconnecter </button>

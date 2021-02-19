@@ -62,6 +62,7 @@ Move to the */api* directory and run :
 - `php bin/console doctrine:database:create`
 - `php bin/console doctrine:schema:update --force` or `php bin/console doctrine:migrations:migrate`
 - `php bin/console cache:clear`
+- Optionnaly, run `php bin/console doctrine:fixtures:load --append` 
 - `symfony serve` to start the php development server **OR** `php -S localhost:8000`
 
 Now, in order to properly use the authentication service, you'll need to generate a ssl key pair.
@@ -71,6 +72,5 @@ If that doesn't work, check [this tutorial](https://developers.yubico.com/PIV/Gu
 **/!\\** Before using the commands to generate the keys, make sure to be in this directory : /api/config/jwt. Or specify it directly into the command line.
 
 **OR** If you have *make* installed on your computer :
-- `make install` 
-then
+- `make install` or `make install-dataset`. Then :
 - `symfony serve` to start the php development server

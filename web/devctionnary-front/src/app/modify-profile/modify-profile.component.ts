@@ -18,13 +18,15 @@ export class ModifyProfileComponent implements OnInit {
   isLoading: boolean = false;
   user: User;
   isSubmitDisabled: boolean = false;
+  formError: string = null;
 
   profileForm = new FormGroup({
     username: new FormControl('', [Validators.required, Validators.minLength(4)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
-    biography: new FormControl('')
+    biography: new FormControl(''),
+    password: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
 
   constructor(
@@ -61,10 +63,11 @@ export class ModifyProfileComponent implements OnInit {
   }
 
   onSubmit(e) {
+    this.formError = null;
     e.preventDefault();
     if (this.isSubmitDisabled === false) {
       this.isLoading = true;
-      this.userService.patchMe(this.profileForm.value)
+      this.userService.patchMe(this.profileForm.value, this.password.value)
         .subscribe((data: {data: any}) => {
           this.isLoading = false;
           this._snackBar.open('Changements enregistrés !', 'Fermer', {
@@ -74,6 +77,8 @@ export class ModifyProfileComponent implements OnInit {
         if (this.user.username !== this.username.value) {
           // Redirect on login form
           this.router.navigate(['/login']);
+        } else {
+          this.router.navigate(['/profile'])
         }
 
       }, (error: HttpErrorResponse) => {
@@ -81,7 +86,7 @@ export class ModifyProfileComponent implements OnInit {
         if (error.status === 401) {
           this.router.navigate(['/login']);
         } else {
-          this.dialogService.openErrorDialog();
+          this.formError = error.error.message;
         }
       });
     }
@@ -98,13 +103,7 @@ export class ModifyProfileComponent implements OnInit {
           });
           this.isSubmitDisabled = false;
         }
-      }, (error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          this.router.navigate(['/login']);
-        } else {
-          this.dialogService.openErrorDialog();
-        }
-      });
+      }, (error: HttpErrorResponse) => {});
     }
   }
 
@@ -127,5 +126,9 @@ export class ModifyProfileComponent implements OnInit {
 
   get biography(): FormControl {
     return this.profileForm.get('biography') as FormControl
+  }
+
+  get password(): FormControl {
+    return this.profileForm.get('password') as FormControl
   }
 }
