@@ -72,6 +72,5 @@ If that doesn't work, check [this tutorial](https://developers.yubico.com/PIV/Gu
 **/!\\** Before using the commands to generate the keys, make sure to be in this directory : /api/config/jwt. Or specify it directly into the command line.
 
 **OR** If you have *make* installed on your computer :
-- `make install` 
-then
+- `make install` or `make install-dataset`. Then :
 - `symfony serve` to start the php development server
