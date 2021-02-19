@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
         if (!localStorage.getItem('token')){
           console.log("erreur token")
         }
-        this.router.navigate(['/']);
+        window.location.href='/';
 
       }, (error: HttpErrorResponse) => {
         if (error.status === 401) {
