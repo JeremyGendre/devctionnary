@@ -1,5 +1,12 @@
 # DEVCTIONNARY
 
+[![GitHub Super-Linter]
+(https://github.com/JeremyGendre/devctionnary/workflows/phplint/badge.svg)]
+(https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter]
+(https://github.com/JeremyGendre/devctionnary/workflows/jslint/badge.svg)]
+(https://github.com/marketplace/actions/super-linter)
+
 ### Setup
 
 **Requirements** :
