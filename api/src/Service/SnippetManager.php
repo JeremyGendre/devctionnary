@@ -35,6 +35,23 @@ class SnippetManager extends AbstractEntityManager implements EntityManagerInter
         return $snippet;
     }
 
+    public function update()
+    {
+        if($this->isBadRequest()){
+            return null;
+        }
+
+        $snippetId = $this->requestContent['id'];
+        $snippet = $this->snippet->serialize();
+        $snippet->setTitle($this->requestContent['title']);
+        $snippet->setContent($this->requestContent['content']);
+        $now = new \DateTime();
+        $snippet->setUpdatedAt($now);
+        $snippet->setDescription($this->requestContent['description']??"");
+        $snippet->setAuthor($this->security->getUser());
+        return $snippet;
+    }
+
     /**
      * @return bool
      */
