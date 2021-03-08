@@ -1,13 +1,14 @@
 {
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0"
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.21.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "eslint": "^7.21.0"
-  }
+  "dependencies": {}
 }
