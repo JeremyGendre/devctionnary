@@ -39,15 +39,6 @@ export class UserService {
     );
   }
 
-  getUsernameAvailability(username: string) {
-    return this.http.get(
-      environment.apiUrl + '/api/users/username-availability/' + username,
-      {
-        headers: this.baseHeaders
-      }
-    );
-  }
-
   deleteMe() {
     return this.http.delete(
       environment.apiUrl + '/api/users/me',

@@ -61,23 +61,6 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
           this.dialogService.openErrorDialog();
         })
-
-
-  }
-
-  onUsernameChange() {
-    if (this.username.value !== '') {
-      this.userService.getUsernameAvailability(this.username.value)
-      .subscribe((data: {data: {available: boolean}}) => {
-        if (data.data.available === false) {
-          this.username.setErrors({
-            'available': false
-          });
-        }
-      }, (error: HttpErrorResponse) => {
-        console.error(error.error);
-      });
-    }
   }
 
   // Getters
