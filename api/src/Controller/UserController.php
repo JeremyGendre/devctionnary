@@ -75,25 +75,4 @@ class UserController extends BaseAbstractController
 
         return $this->emptyJsonResponse();
     }
-
-    /**
-     * @Route("/username-availability/{username}", name="users_username_availability", methods={"GET"})
-     * @param UserRepository $userRepository
-     * @param string $username
-     * @return JsonResponse
-     */
-    public function getUsernameAvailability(
-        UserRepository $userRepository,
-        string $username
-    ): JsonResponse
-    {
-        if ($username !== $this->getUser()->getUsername()) {
-            $existingUser = $userRepository->findOneBy(['username' => $username]);
-            if($existingUser){
-                return $this->successJsonResponse(['available' => false]);
-            }
-        }
-
-        return $this->successJsonResponse(['available' => true]);
-    }
 }
