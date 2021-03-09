@@ -56,6 +56,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Then, duplicate the .env file and create a .env.local file that you can override in order to fill in the right information about the database and so on.
 
+Database : MySQL. Please, make sure to uncomment the DATABASE_URL line in your .env.local (with 'mysql' in it) and fill the right informations.
+
 ### Commands
 
 Move to the */api* directory and run :
