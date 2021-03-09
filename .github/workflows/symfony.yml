@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-versions: ['7.2.5','7.4', '8.0']
+        php-versions: ['7.2','7.4', '8.0']
     steps:
       # —— Setup Github actions 🐙 —————————————————————————————————————————————
       # https://github.com/actions/checkout (official)
@@ -23,9 +23,6 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: mbstring, xml, ctype, intl, pdo, pdo_mysql, dom, filter, gd, iconv, json
-        env:
-          update: true
 
       - name: Check PHP Version
         run: php -v
@@ -36,13 +33,3 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           tools: composer:v2
-
-      # —— Symfony ——————————————————————————————————————————————————————————
-      - name: Check Symfony requirements
-        run: vendor/bin/requirements-checker
-
-      - name: Check the Symfony console
-        run: |
-          bin/console about
-          bin/console strangebuzz:version
-
