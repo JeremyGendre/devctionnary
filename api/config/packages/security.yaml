@@ -14,6 +14,9 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        username_availability:
+            pattern: ^/api/users/username-availability
+            anonymous: true
         login:
             pattern:  ^/api/login
             stateless: true
