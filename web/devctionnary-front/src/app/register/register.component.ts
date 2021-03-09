@@ -61,8 +61,6 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
           this.dialogService.openErrorDialog();
         })
-
-
   }
 
   // Getters
