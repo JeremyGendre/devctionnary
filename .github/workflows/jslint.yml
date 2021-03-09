@@ -10,11 +10,10 @@ jobs:
   run-linters:
     name: Run linters
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
-
+        working-directory: web/devctionnary-front
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
