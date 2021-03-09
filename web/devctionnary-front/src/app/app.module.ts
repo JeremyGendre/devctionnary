@@ -1,3 +1,4 @@
+import { AuthenticatedStoreService } from './services/stores/authenticated-store.service';
 import { DialogConfirmUserDeletionComponent } from './get-profile/dialog-confirm/dialog-confirm-user-deletion.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -77,6 +78,9 @@ import { AddSnipetComponent } from './add-snipet/add-snipet.component';
     MatDialogModule,
     HighlightJsModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    AuthenticatedStoreService
+  ]
 })
 export class AppModule { }

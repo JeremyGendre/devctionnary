@@ -30,6 +30,9 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "eslint": "^7.21.0",
     "@angular-devkit/build-angular": "~0.1002.0",
     "@angular/cli": "~10.2.0",
     "@angular/compiler-cli": "~10.2.0",

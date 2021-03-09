@@ -92,21 +92,6 @@ export class ModifyProfileComponent implements OnInit {
     }
   }
 
-  onUsernameChange() {
-    this.isSubmitDisabled = true;
-    if (this.username.value !== '') {
-      this.userService.getUsernameAvailability(this.username.value)
-      .subscribe((data: {data: {available: boolean}}) => {
-        if (data.data.available === false) {
-          this.username.setErrors({
-            'available': false
-          });
-          this.isSubmitDisabled = false;
-        }
-      }, (error: HttpErrorResponse) => {});
-    }
-  }
-
   // Getters
   get username(): FormControl {
     return this.profileForm.get('username') as FormControl

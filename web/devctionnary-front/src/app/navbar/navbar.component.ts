@@ -1,3 +1,4 @@
+import { AuthenticatedStoreService } from './../services/stores/authenticated-store.service';
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,15 +11,17 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
   isAuthenticated = false;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    public authenticatedStoreService: AuthenticatedStoreService
+  ) { }
 
-  ngOnInit(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
-  }
+  ngOnInit(): void {}
 
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
-    this.isAuthenticated = false;
+    this.authenticatedStoreService.updateAuthenticated();
   }
 }

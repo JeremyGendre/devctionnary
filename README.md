@@ -1,5 +1,8 @@
 # DEVCTIONNARY
 
+[![GitHub Super-Linter](https://github.com/JeremyGendre/devctionnary/workflows/PHP%20Lint/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/JeremyGendre/devctionnary/workflows/JS%20Lint/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ### Setup
 
 **Requirements** :
@@ -52,6 +55,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 - install the [symfony](https://symfony.com/download) client to make development easier and faster.
 
 Then, duplicate the .env file and create a .env.local file that you can override in order to fill in the right information about the database and so on.
+
+Database : MySQL. Please, make sure to uncomment the DATABASE_URL line in your .env.local (with 'mysql' in it) and fill the right informations.
 
 ### Commands
 
