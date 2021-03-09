@@ -9,9 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: PHPUnit for Symfony
-        uses: chindit/actions-phpunit-symfony@master
-
+      
       - name: PHPUnit
         uses: chindit/actions-phpunit-symfony@master
