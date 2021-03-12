@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Snippet } from '../models/snippet';
-import { DialogService } from '../services/dialog.service';
 import { SnippetService } from '../services/snippet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
