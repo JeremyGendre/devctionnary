@@ -58,6 +58,6 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2.8.2
         with:
-          start: npm start-front
+          start: npm run start-front
           wait-on: http://localhost:4200/
           wait-on-timeout: 180
