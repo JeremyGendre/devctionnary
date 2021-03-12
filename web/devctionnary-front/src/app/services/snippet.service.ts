@@ -41,7 +41,7 @@ export class SnippetService {
     return this.http.get(this.apiUrl + `/api/snippets/${id}`, { headers: this.header });
   }
 
-  updateSnippet(snippet: any): Observable<Object>{
+  updateSnippet(snippet: {id: number}): Observable<Object>{
     return this.http.post(environment.apiUrl + `/api/snippets/${snippet.id}`, snippet, {
       headers: this.header,
     });

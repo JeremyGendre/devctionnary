@@ -28,9 +28,8 @@ export class UpdateSnippetComponent implements OnInit {
   constructor(
     private snippetService: SnippetService,
     private _snackBar: MatSnackBar,
-    private route: ActivatedRoute, 
-    private router: Router,
-    private dialogService: DialogService
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
 
@@ -58,30 +57,26 @@ export class UpdateSnippetComponent implements OnInit {
   updateSnippet(){
     this.snippetService.updateSnippet(this.snippetForm.value)
     .subscribe(
-      (data) => {​​
+      (data) => {
         console.log(data);
         this._snackBar.open('Snippet mofifié !', 'Fermer', {
           duration: 1500
         });
-      }​​,
-      (error: HttpErrorResponse) => {​​
+      },
+      (error: HttpErrorResponse) => {
         console.error(error);
         if (error.status === 401) {
           this.router.navigate(['/']);
         } else {
           this.formError = error.error.message;
         }
-      }​​
+      }
     );
     console.warn("start updateSnippet");
     this.router.navigate(['/']);
   }
 
-  deleteSnippet(){
-
-  }
-
-  onSubmit(e) {
+  onSubmit(e: Event): void {
     this.formError = null;
     e.preventDefault();
     console.log(this.updateSnippet());
@@ -92,7 +87,7 @@ export class UpdateSnippetComponent implements OnInit {
   get title(): FormControl {
     return this.snippetForm.get('title') as FormControl
   }
-  
+
   get description(): FormControl {
     return this.snippetForm.get('description') as FormControl
   }
