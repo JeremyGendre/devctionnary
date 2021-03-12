@@ -13,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-snippet.component.scss']
 })
 export class UpdateSnippetComponent implements OnInit {
-  isSubmitDisabled: boolean = false;
   formError: string = null;
   snippet: Snippet = <Snippet>{};
   id: number;
