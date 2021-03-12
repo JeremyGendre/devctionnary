@@ -1,4 +1,3 @@
-import { UserService } from './../services/user.service';
 import { DialogService } from './../services/dialog.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -34,7 +33,7 @@ export class RegisterComponent implements OnInit {
     console.log('register init')
   }
 
-  onRegister(e: Event) {
+  onRegister(e: Event): void{
     e.preventDefault();
       this.isLoading = true;
       this.authService

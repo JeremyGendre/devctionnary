@@ -52,7 +52,7 @@ export class UpdateSnippetComponent implements OnInit {
       });
   }
 
-  updateSnippet(){
+  updateSnippet(): void{
     this.snippetService.updateSnippet(this.snippetForm.value)
     .subscribe(
       (data) => {
