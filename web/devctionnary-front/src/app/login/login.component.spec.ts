@@ -10,7 +10,7 @@ describe('LoginComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginComponent ], 
+      declarations: [ LoginComponent ],
       imports: [ FormsModule, ReactiveFormsModule,HttpClientTestingModule,RouterTestingModule ]
     })
     .compileComponents();
@@ -27,9 +27,9 @@ describe('LoginComponent', () => {
     });
 
   it('is form valid ', () =>{
-    let itemLogin = component.loginForm.controls["username"];
+    const itemLogin = component.loginForm.controls["username"];
     itemLogin.setValue("jvj0");
-    let itemPassword = component.loginForm.controls["password"];
+    const itemPassword = component.loginForm.controls["password"];
     itemPassword.setValue("salut");
     expect(component.loginForm.valid).toBeTruthy();
   });
@@ -37,6 +37,4 @@ describe('LoginComponent', () => {
   it('form invalid when empty', () => {
     expect(component.loginForm.valid).toBeFalsy();
   });
-
-  
 });

@@ -13,7 +13,7 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ], 
+      declarations: [ RegisterComponent ],
       imports: [ FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule, MatSnackBarModule, MatDialogModule ]
     })
     .compileComponents();
@@ -33,17 +33,17 @@ describe('RegisterComponent', () => {
      expect(component.registerForm.invalid).toBeTruthy();
    })
 
-   
+
    it('is form valid ', () =>{
-    let itemLogin = component.registerForm.controls["username"];
+    const itemLogin = component.registerForm.controls["username"];
     itemLogin.setValue("user1");
-    let itemPassword = component.registerForm.controls["password"];
+    const itemPassword = component.registerForm.controls["password"];
     itemPassword.setValue("salut");
-    let firstName = component.registerForm.controls["firstName"];
+    const firstName = component.registerForm.controls["firstName"];
     firstName.setValue("User");
-    let lastName = component.registerForm.controls["lastName"];
+    const lastName = component.registerForm.controls["lastName"];
     lastName.setValue("One");
-    let email = component.registerForm.controls["email"];
+    const email = component.registerForm.controls["email"];
     email.setValue("user1@gmail.com");
     expect(component.registerForm.valid).toBeTruthy();
   });

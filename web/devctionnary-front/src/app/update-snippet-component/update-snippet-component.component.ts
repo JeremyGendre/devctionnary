@@ -6,10 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./update-snippet-component.component.scss']
 })
 export class UpdateSnippetComponentComponent implements OnInit {
-
-  constructor() { }
-
   ngOnInit(): void {
+    console.log('update snippet init')
   }
-
 }

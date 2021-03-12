@@ -1,7 +1,7 @@
 import { AuthenticatedStoreService } from './services/stores/authenticated-store.service';
 import { DialogConfirmUserDeletionComponent } from './get-profile/dialog-confirm/dialog-confirm-user-deletion.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AppRoutingModule } from './app-routing.module';
@@ -72,7 +72,7 @@ import { UpdateSnippetComponentComponent } from './update-snippet-component/upda
     MatGridListModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule, 
+    MatInputModule,
     FormsModule,
     MatProgressSpinnerModule,
     MatInputModule,
