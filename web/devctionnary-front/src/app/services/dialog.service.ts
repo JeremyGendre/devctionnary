@@ -8,7 +8,7 @@ import { Injectable } from "@angular/core";
 export class DialogService {
   constructor(private dialog: MatDialog) {}
 
-  openErrorDialog() {
-    const dialogRef = this.dialog.open(ErrorModalComponent);
+  openErrorDialog(): void {
+    this.dialog.open(ErrorModalComponent);
   }
 }

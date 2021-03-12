@@ -41,7 +41,7 @@ export class DetailsSnippetComponent implements OnInit {
   back() {
     this.router.navigate(['/']);
   }
-  onUpdate(id) {
+  onUpdate(id: number): void {
     this.router.navigate(['snippets', 'details', 'update', id]);
   }
 

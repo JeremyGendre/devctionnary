@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Snippet } from '../models/snippet';
-import { DialogService } from '../services/dialog.service';
 import { SnippetService } from '../services/snippet.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -13,7 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-snippet.component.scss']
 })
 export class UpdateSnippetComponent implements OnInit {
-  isSubmitDisabled: boolean = false;
   formError: string = null;
   snippet: Snippet = <Snippet>{};
   id: number;
@@ -28,9 +26,8 @@ export class UpdateSnippetComponent implements OnInit {
   constructor(
     private snippetService: SnippetService,
     private _snackBar: MatSnackBar,
-    private route: ActivatedRoute, 
-    private router: Router,
-    private dialogService: DialogService
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
 
@@ -55,33 +52,29 @@ export class UpdateSnippetComponent implements OnInit {
       });
   }
 
-  updateSnippet(){
+  updateSnippet(): void{
     this.snippetService.updateSnippet(this.snippetForm.value)
     .subscribe(
-      (data) => {​​
+      (data) => {
         console.log(data);
         this._snackBar.open('Snippet mofifié !', 'Fermer', {
           duration: 1500
         });
-      }​​,
-      (error: HttpErrorResponse) => {​​
+      },
+      (error: HttpErrorResponse) => {
         console.error(error);
         if (error.status === 401) {
           this.router.navigate(['/']);
         } else {
           this.formError = error.error.message;
         }
-      }​​
+      }
     );
     console.warn("start updateSnippet");
     this.router.navigate(['/']);
   }
 
-  deleteSnippet(){
-
-  }
-
-  onSubmit(e) {
+  onSubmit(e: Event): void {
     this.formError = null;
     e.preventDefault();
     console.log(this.updateSnippet());
@@ -92,7 +85,7 @@ export class UpdateSnippetComponent implements OnInit {
   get title(): FormControl {
     return this.snippetForm.get('title') as FormControl
   }
-  
+
   get description(): FormControl {
     return this.snippetForm.get('description') as FormControl
   }

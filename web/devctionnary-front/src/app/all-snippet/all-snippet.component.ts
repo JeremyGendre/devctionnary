@@ -18,7 +18,7 @@ export class AllSnippetComponent implements OnInit {
     this.getAllSnippets();
   }
 
-  getAllSnippets(){
+  getAllSnippets(): void{
     this.allSnippets = [];
     this.snippetService.getAllSnippets().subscribe((data) => {
       this.allSnippets = data.data;
@@ -29,8 +29,8 @@ export class AllSnippetComponent implements OnInit {
     })
   }
 
-  onDetails(id: string) {
+  onDetails(id: string): void {
     this.router.navigate(['snippets', 'details', id]);
   }
-  
+
 }

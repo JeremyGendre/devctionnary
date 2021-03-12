@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SnippetService } from './../services/snippet.service';
-import { Snippet } from '../models/snippet';
-import { User } from '../models/user';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -18,17 +15,17 @@ export class AddSnipetComponent implements OnInit {
   baseHeaders = new HttpHeaders();
 
   constructor(private snippetService: SnippetService, private router: Router, private _snackBar: MatSnackBar, private http: HttpClient) {
-      this.baseHeaders = this.baseHeaders.set('Content-Type', 'application/json; charset=utf-8'),
-      this.baseHeaders = this.baseHeaders.set('Authorization', `Bearer ${​​localStorage.getItem('token')}​​`)
+      this.baseHeaders = this.baseHeaders.set('Content-Type', 'application/json; charset=utf-8');
+      this.baseHeaders = this.baseHeaders.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
   }
 
-  onSubmit() {
+  onSubmit(): void {
     console.log(this.addSnippet());
     console.warn(this.addSnipetForm.value);
-
   }
 
   ngOnInit(): void {
+    console.log('add snipet init')
   }
 
   addSnipetForm = new FormGroup({
@@ -36,24 +33,24 @@ export class AddSnipetComponent implements OnInit {
     description: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required)
   });
-  
-  addSnippet(){
+
+  addSnippet(): void{
     this.snippetService.addSnippet(this.addSnipetForm.value)
     .subscribe(
-      (data) => {​​
+      (data) => {
         console.log(data);
         this._snackBar.open('Snippet enregistrés !', 'Fermer', {
           duration: 1500
         });
-      }​​,
-      (error: HttpErrorResponse) => {​​
+      },
+      (error: HttpErrorResponse) => {
         console.error(error);
         if (error.status === 401) {
           this.router.navigate(['/login']);
         } else {
           this.formError = error.error.message;
         }
-      }​​
+      }
     );
     console.warn("start addSnippet");
     this.router.navigate(['/']);

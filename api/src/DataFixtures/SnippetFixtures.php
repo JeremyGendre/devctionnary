@@ -33,14 +33,14 @@ class SnippetFixtures extends Fixture implements DependentFixtureInterface
         for($i = 0 ; $i < 20; $i++){
             $snippet = new Snippet();
             $snippet->setUpdatedAt(new DateTime());
-            $snippet->setCreatedAt(new DateTime());
+            $snippet->setCreatedAt((new \DateTime())->sub(new \DateInterval('P'.random_int(0,10).'D')));
             $snippet->setTitle('title snippet'.$i);
             $snippet->setDescription('description'.$i);
             $snippet->setContent('content'.$i);
             $snippet->setAuthor($this->userRepository->findOneBy([]));
 
             $snippetValidation = new SnippetValidation();
-            $snippetValidation->setCreatedAt(new DateTime());
+            $snippetValidation->setCreatedAt((new \DateTime())->sub(new \DateInterval('P'.random_int(0,10).'D')));
             $snippetValidation->setUpdatedAt(new DateTime());
             $snippetValidation->setSnippet($snippet);
             $snippetValidation->setValidator($admin);

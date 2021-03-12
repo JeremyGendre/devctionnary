@@ -39,7 +39,7 @@ class VoteFixtures extends Fixture implements DependentFixtureInterface
         for($i = 0 ; $i < 20; $i++){
             $vote = new Vote();
             $vote->setUpdatedAt(new DateTime());
-            $vote->setCreatedAt(new DateTime());
+            $vote->setCreatedAt((new \DateTime())->sub(new \DateInterval('P'.random_int(0,10).'D')));
             $vote->setRating(($i%3 === 0) ? 3 : (($i%4 === 0) ? 4 : 2));
             $vote->setVoter($this->userRepository->findOneBy([]));
             $vote->setSnippet($this->snippetRepository->findOneBy([]));
