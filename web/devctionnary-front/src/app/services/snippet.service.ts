@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import {Observable} from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SnippetService {
 
@@ -22,9 +22,7 @@ export class SnippetService {
   };*/
   apiUrl = 'http://localhost:8000';
 
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) {}
 
   getAllSnippets(): Observable<Object>{
     return this.http.get(this.apiUrl + '/api/snippets', {headers: this.header});
@@ -41,5 +39,11 @@ export class SnippetService {
 
   getSnippetById(id: number): Observable<Object>{
     return this.http.get(this.apiUrl + `/api/snippets/${id}`, { headers: this.header });
+  }
+
+  updateSnippet(snippet: any): Observable<Object>{
+    return this.http.post(environment.apiUrl + `/api/snippets/${snippet.id}`, snippet, {
+      headers: this.header,
+    });
   }
 }

@@ -8,6 +8,7 @@ import { DetailsSnippetComponent } from './details-snippet/details-snippet.compo
 import {LoginComponent} from "./login/login.component";
 import { AuthGuardService as AuthGuard } from './services/guards/auth-guard.service';
 import { AddSnipetComponent } from './add-snipet/add-snipet.component';
+import { UpdateSnippetComponent } from './update-snippet/update-snippet.component';
 
 const routes: Routes = [
   { path:'', component: AllSnippetComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'profile', redirectTo: 'profile/', pathMatch: 'full' },
   { path: 'modify-profile', component: ModifyProfileComponent, canActivate: [AuthGuard] },
   { path: 'add-snipet', component: AddSnipetComponent, canActivate: [AuthGuard] },
+  { path: 'snippets/details/update/:id', component: UpdateSnippetComponent},
 ]
 
 @NgModule({
