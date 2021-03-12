@@ -25,6 +25,7 @@ export class AddSnipetComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('add snipet init')
   }
 
   addSnipetForm = new FormGroup({
@@ -36,13 +37,13 @@ export class AddSnipetComponent implements OnInit {
   addSnippet(): void{
     this.snippetService.addSnippet(this.addSnipetForm.value)
     .subscribe(
-      (data) => {​​
+      (data) => {
         console.log(data);
         this._snackBar.open('Snippet enregistrés !', 'Fermer', {
           duration: 1500
         });
       },
-      (error: HttpErrorResponse) => {​​
+      (error: HttpErrorResponse) => {
         console.error(error);
         if (error.status === 401) {
           this.router.navigate(['/login']);
