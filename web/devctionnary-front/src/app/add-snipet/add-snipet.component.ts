@@ -16,7 +16,7 @@ export class AddSnipetComponent implements OnInit {
 
   constructor(private snippetService: SnippetService, private router: Router, private _snackBar: MatSnackBar, private http: HttpClient) {
       this.baseHeaders = this.baseHeaders.set('Content-Type', 'application/json; charset=utf-8');
-      this.baseHeaders = this.baseHeaders.set('Authorization', `Bearer ${localStorage.getItem('token')}​​`);
+      this.baseHeaders = this.baseHeaders.set('Authorization', `Bearer ${localStorage.getItem('token')}`);
   }
 
   onSubmit(): void {
