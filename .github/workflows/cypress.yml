@@ -40,6 +40,7 @@ jobs:
         with: 
           run: php -S localhost:8000 -t ./api/public/ &
           wait-on: http://localhost:8000
+          wait-on-timeout: 120
         env:
           APP_ENV: PROD
           DATABASE_URL: mysql://root:root@localhost:3306/symfony
@@ -56,6 +57,7 @@ jobs:
         with:
           run: cd ./web/devctionnary-front/ && npm start &
           wait-on: http://localhost:4200
+          wait-on-timeout: 120
         
       - name: Cypress run
         uses: cypress-io/github-action@v2.8.2
