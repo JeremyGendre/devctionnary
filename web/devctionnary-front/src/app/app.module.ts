@@ -33,7 +33,7 @@ import { DetailsSnippetComponent } from './details-snippet/details-snippet.compo
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { RegisterComponent } from './register/register.component';
 import { AddSnipetComponent } from './add-snipet/add-snipet.component';
-import { UpdateSnippetComponentComponent } from './update-snippet-component/update-snippet-component.component';
+import { UpdateSnippetComponent } from './update-snippet/update-snippet.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { UpdateSnippetComponentComponent } from './update-snippet-component/upda
     ErrorModalComponent,
     DialogConfirmUserDeletionComponent,
     RegisterComponent,
-    UpdateSnippetComponentComponent
+    UpdateSnippetComponent
   ],
   imports: [
     BrowserModule,

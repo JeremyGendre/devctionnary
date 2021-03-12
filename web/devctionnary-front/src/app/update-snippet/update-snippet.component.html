@@ -1,0 +1,28 @@
+<mat-card class="addSnipet">
+  <mat-card-header>
+    <mat-card-title>Editer un snipet</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="snippetForm" (submit)="onSubmit($event)">
+      <div>
+        <p>
+          <mat-form-field class="inputWidth" appearance="outline">
+            <mat-label>Titre du snippet</mat-label>
+            <input matInput formControlName="title">
+          </mat-form-field>
+          <br>
+          <mat-form-field class="inputWidth" appearance="outline">
+            <mat-label>Description du snippet</mat-label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+        </p>
+        <mat-form-field class="inputFullWidth" appearance="outline">
+          <mat-label>Contenu</mat-label>
+          <textarea matInput formControlName="content"></textarea>
+        </mat-form-field>
+        <br />
+        <button type="submit" [disabled]="!snippetForm.valid" mat-raised-button color="primary">Ajouter</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
