@@ -41,8 +41,9 @@ jobs:
           DATABASE_URL: mysql://root:root@localhost:3306/symfony
           
       - name: Launch Symfony
+        uses: ./api/
         with: 
-          run: php -S localhost:8000 -t ./api/public/ &
+          run: php -S localhost:8000 -t public/ &
           wait-on: http://localhost:8000
           wait-on-timeout: 120
         env:
@@ -57,6 +58,7 @@ jobs:
             npm build
             
       - name: Launch Angular
+        uses: ./web/devctionnary-front/
         with:
           run: cd ./web/devctionnary-front/ && npm start &
           wait-on: http://localhost:4200
