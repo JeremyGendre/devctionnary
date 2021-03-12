@@ -34,7 +34,7 @@ class UserFixtures extends Fixture
             $user->setLastName("Valjean".$i);
             $user->setFirstName("Jean".$i);
             $user->setUsername($username);
-            $user->setCreatedAt(new \DateTime());
+            $user->setCreatedAt((new \DateTime())->sub(new \DateInterval('P'.random_int(0,10).'D')));
             $user->setUpdatedAt(new \DateTime());
             $user->setBiography("lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum");
             $user->setEmail($username."@yopmail.com");
@@ -47,7 +47,7 @@ class UserFixtures extends Fixture
         $user->setLastName("Big");
         $user->setFirstName("Boss");
         $user->setUsername("root");
-        $user->setCreatedAt(new \DateTime());
+        $user->setCreatedAt((new \DateTime())->sub(new \DateInterval('P'.random_int(0,10).'D')));
         $user->setUpdatedAt(new \DateTime());
         $user->setRoles(["ROLE_ADMIN"]);
         $user->setBiography("lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum");
