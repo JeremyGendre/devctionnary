@@ -47,35 +47,17 @@ jobs:
             sudo npm install
             npm build
 
-      - name: Launch Angular
+      - name: Launch Symfony
         run: |
-          cd ./web/devctionnary-front/ && npm start &
+          cd ./api/
+          php -S localhost:8000 -t ./api/public/ &
+        env:
+          APP_ENV: PROD
+          DATABASE_URL: mysql://root:root@localhost:3306/symfony
         
       - name: Cypress run
         uses: cypress-io/github-action@v2.8.2
         with:
-          start: php -S localhost:8000 -t ./api/public/ & cd ./web/devctionnary-front/ && npm start
+          start: cd ./web/devctionnary-front/ && npm start
           wait-on: http://localhost:4200/
           wait-on-timeout: 180
-        env:
-          APP_ENV: PROD
-          DATABASE_URL: mysql://root:root@localhost:3306/symfony
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
