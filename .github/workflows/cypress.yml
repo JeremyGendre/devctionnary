@@ -56,13 +56,14 @@ jobs:
             sudo npm i -g @angular/cli
             sudo npm install
             npm build
+
+      - name: Launch Angular
+        run: |
+          cd ./web/devctionnary-front/ && npm start &
         
       - name: Cypress run
         uses: cypress-io/github-action@v2.8.2
         with:
-          install: npm install
-          run: cd ./web/devctionnary-front/ && npm start &
-          wait-on: http://localhost:4200
-          wait-on-timeout: 120
-  
-
+          start: php -S localhost:8000 -t ./api/public/ & cd ./web/devctionnary-front/ && npm start
+          wait-on: http-get://localhost:4200/
+          wait-on-timeout: 180
