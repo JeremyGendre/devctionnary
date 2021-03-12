@@ -59,7 +59,7 @@ jobs:
         
       - name: Cypress run
         uses: cypress-io/github-action@v2.8.2
-         with:
+        with:
           install: npm install
           run: cd ./web/devctionnary-front/ && npm start &
           wait-on: http://localhost:4200
