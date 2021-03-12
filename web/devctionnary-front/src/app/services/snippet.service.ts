@@ -29,7 +29,7 @@ export class SnippetService {
   getAllSnippets(): Observable<Object>{
     return this.http.get(this.apiUrl + '/api/snippets', {headers: this.header});
   }
-  addSnippet(snippet): Observable<Object>{
+  addSnippet(snippet: {}): Observable<Object>{
     return this.http.post(
       environment.apiUrl + '/api/snippets',
       snippet,
