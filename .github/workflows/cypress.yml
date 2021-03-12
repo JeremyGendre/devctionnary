@@ -58,7 +58,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2.8.2
         with:
-          working-directory: /web/devctionnnary-front
+          working-directory: /web/devctionnary-front
           start: npm start
           wait-on: http://localhost:4200/
           wait-on-timeout: 180
