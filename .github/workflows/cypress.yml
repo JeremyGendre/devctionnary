@@ -38,17 +38,7 @@ jobs:
           php bin/console doctrine:migrations:migrate
         env:
           APP_ENV: PROD
-          DATABASE_URL: mysql://root:root@localhost:3306/symfony
-          
-      - name: Launch Symfony
-        uses: actions/checkout@v2
-        with: 
-          run: php -S localhost:8000 -t public/ &
-          wait-on: http://localhost:8000
-          wait-on-timeout: 120
-        env:
-          APP_ENV: PROD
-          DATABASE_URL: mysql://root:root@localhost:3306/symfony
+          DATABASE_URL: mysql://root:root@localhost:3306/symfony        
           
       - name: Prepare Angular
         run: |
@@ -65,5 +55,27 @@ jobs:
         uses: cypress-io/github-action@v2.8.2
         with:
           start: php -S localhost:8000 -t ./api/public/ & cd ./web/devctionnary-front/ && npm start
-          wait-on: http-get://localhost:4200/
+          wait-on: http://localhost:4200/
           wait-on-timeout: 180
+        env:
+          APP_ENV: PROD
+          DATABASE_URL: mysql://root:root@localhost:3306/symfony
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
