@@ -53,6 +53,25 @@ class SnippetController extends BaseAbstractController
         return $this->successJsonResponse($snippet);
     }
 
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("", name="snippet_update", methods={"POST"})
+     * @param SnippetManager $snippetManager
+     * @return JsonResponse
+     */
+    public function updateSnippet(SnippetManager $snippetManager): JsonResponse
+    {
+        $snippet = $snippetManager->update();
+
+        if (!$snippet) {
+            return $this->errorJsonResponse("Erreur de modification du snippet");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($snippet);
+        $em->flush();
+        return $this->successJsonResponse($snippet);
+    }
 
     /**
      * @Route("/{id}", name="snippets_get_one", methods={"GET"})
