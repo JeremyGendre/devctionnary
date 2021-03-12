@@ -6,6 +6,7 @@
     <form [formGroup]="snippetForm" (submit)="onSubmit($event)">
       <div>
         <p>
+          <input formControlName="id" type="hidden">
           <mat-form-field class="inputWidth" appearance="outline">
             <mat-label>Titre du snippet</mat-label>
             <input matInput formControlName="title">

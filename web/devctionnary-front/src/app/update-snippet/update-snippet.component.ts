@@ -13,13 +13,13 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-snippet.component.scss']
 })
 export class UpdateSnippetComponent implements OnInit {
-  isLoading: boolean = false;
   isSubmitDisabled: boolean = false;
   formError: string = null;
   snippet: Snippet = <Snippet>{};
   id: number;
 
   snippetForm = new FormGroup({
+    id: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     content: new FormControl('', Validators.required),
@@ -36,27 +36,23 @@ export class UpdateSnippetComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.isLoading = true;
-    this.snippetService.getSnippetById(this.id)
-    .subscribe((data: {data: {snippet: string}}) => {
-      const snippet: Snippet = JSON.parse(data.data.snippet);
-      this.snippet = snippet;
-      
-      this.snippetForm.patchValue({
-        title: snippet.title,
-        description: snippet.description,
-        content: snippet.content,
+    this.snippetService.getSnippetById(this.id).subscribe(
+      (data) => {
+        if (!data || !data.data){
+          this.router.navigate(['/']);
+        }
+        this.snippet = data.data;
+        console.log(this.snippet);
+        this.snippetForm.patchValue({
+          id: this.snippet.id,
+          title: this.snippet.title,
+          description: this.snippet.description,
+          content: this.snippet.content,
+        });
+      },
+      (err: HttpErrorResponse) => {
+        console.error(err.error);
       });
-
-      this.isLoading = false;
-    },(error: HttpErrorResponse) => {
-      this.isLoading = false;
-      if (error.status === 401) {
-        this.router.navigate(['/login']);
-      } else {
-        this.dialogService.openErrorDialog();
-      }
-    });
   }
 
   updateSnippet(){
@@ -64,20 +60,20 @@ export class UpdateSnippetComponent implements OnInit {
     .subscribe(
       (data) => {​​
         console.log(data);
-        this._snackBar.open('Snippet enregistrés !', 'Fermer', {
+        this._snackBar.open('Snippet mofifié !', 'Fermer', {
           duration: 1500
         });
       }​​,
       (error: HttpErrorResponse) => {​​
         console.error(error);
         if (error.status === 401) {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/']);
         } else {
           this.formError = error.error.message;
         }
       }​​
     );
-    console.warn("start addSnippet");
+    console.warn("start updateSnippet");
     this.router.navigate(['/']);
   }
 

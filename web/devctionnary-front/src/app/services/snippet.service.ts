@@ -37,7 +37,7 @@ export class SnippetService {
   }
 
   updateSnippet(snippet: any) {
-    return this.http.post(environment.apiUrl + '/api/snippets', snippet, {
+    return this.http.post(environment.apiUrl + `/api/snippets/${snippet.id}`, snippet, {
       headers: this.header,
     });
   }
