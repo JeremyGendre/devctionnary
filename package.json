@@ -8,5 +8,8 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "start-front": "cd ./web/devctionnary-front && npm start"
+  }
 }
