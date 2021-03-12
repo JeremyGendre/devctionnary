@@ -41,6 +41,11 @@ export class SnippetService {
       headers: this.header,
     });
   }
+  deleteSnippet(id: any) {
+    return this.http.delete(environment.apiUrl + `/api/snippets/${id}`,{
+      headers: this.header,
+    });
+  }
 
   getSnippetById(id: number) {
     return this.http.get<any>(this.apiUrl + `/api/snippets/${id}`, {
