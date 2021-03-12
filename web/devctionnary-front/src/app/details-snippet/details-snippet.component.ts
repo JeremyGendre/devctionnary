@@ -31,7 +31,7 @@ export class DetailsSnippetComponent implements OnInit {
       });
   }
 
-  back(){
+  back(): void{
     this.router.navigate(['/']);
   }
 

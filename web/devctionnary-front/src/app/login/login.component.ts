@@ -10,10 +10,10 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  isLoading: boolean = false;
+  isLoading = false;
   formError: string = null;
 
-  loginForm: FormGroup = new FormGroup({​​
+  loginForm: FormGroup = new FormGroup({
     username: new FormControl('',  [Validators.required, Validators.minLength(4)]),
     password: new FormControl('',  [Validators.required, Validators.minLength(4)]),
   });
@@ -21,9 +21,10 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
+    console.log('login component init')
   }
 
-  onLogin(e) {
+  onLogin(e: Event): void{
     e.preventDefault();
     this.isLoading = true;
     this.formError = null;

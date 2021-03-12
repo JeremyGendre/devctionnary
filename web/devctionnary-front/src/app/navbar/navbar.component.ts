@@ -9,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  isAuthenticated = false;
 
   constructor(
     private authService: AuthService,
@@ -17,9 +16,9 @@ export class NavbarComponent implements OnInit {
     public authenticatedStoreService: AuthenticatedStoreService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {console.log('navbar init')}
 
-  logout() {
+  logout(): void{
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
     this.authenticatedStoreService.updateAuthenticated();
