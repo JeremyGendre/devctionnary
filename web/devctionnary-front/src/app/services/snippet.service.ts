@@ -40,7 +40,7 @@ export class SnippetService {
   getSnippetById(id: number): Observable<Object>{
     return this.http.get(this.apiUrl + `/api/snippets/${id}`, { headers: this.header });
   }
-  deleteSnippet(id: any) {
+  deleteSnippet(id: number): Observable<Object> {
     return this.http.delete(environment.apiUrl + `/api/snippets/${id}`,{
       headers: this.header,
     });

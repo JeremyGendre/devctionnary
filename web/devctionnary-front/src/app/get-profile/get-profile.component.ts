@@ -32,7 +32,6 @@ export class GetProfileComponent implements OnInit {
     // Check route params
     this.route.queryParams.subscribe(params => {
       if (params['id']) {
-        // @ts-ignore
         this.userService.getUser(params['id']).subscribe((data: {data: {user: userType}}) => {
           this.user = JSON.parse(data.data.user);
           this.editAllowed = false;
@@ -44,7 +43,6 @@ export class GetProfileComponent implements OnInit {
           }
         });
       } else {
-        // @ts-ignore
         this.userService.getUser(null).subscribe((data: {data: {user: userType}}) => {
           this.user = JSON.parse(data.data.user);
           this.editAllowed = true;

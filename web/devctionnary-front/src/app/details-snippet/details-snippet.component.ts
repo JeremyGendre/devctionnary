@@ -38,14 +38,14 @@ export class DetailsSnippetComponent implements OnInit {
     );
   }
 
-  back() {
+  back(): void{
     this.router.navigate(['/']);
   }
   onUpdate(id: number): void {
     this.router.navigate(['snippets', 'details', 'update', id]);
   }
 
-  onDelete(id) {
+  onDelete(id: number): void {
     this.snippetService.deleteSnippet(id).subscribe(
       (data) => {
         console.log(data);
