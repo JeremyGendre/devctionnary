@@ -29,17 +29,17 @@ describe('ModifyProfileComponent', () => {
    });
 
   it('is form valid ', () =>{
-    let itemLogin = component.profileForm.controls["username"];
+    const itemLogin = component.profileForm.controls["username"];
     itemLogin.setValue("jvj0");
-    let itemEmail = component.profileForm.controls["email"];
+    const itemEmail = component.profileForm.controls["email"];
     itemEmail.setValue("jvj0@gmail.com");
-    let itemFirstName = component.profileForm.controls["firstName"];
+    const itemFirstName = component.profileForm.controls["firstName"];
     itemFirstName.setValue("firstName1");
-    let itemLastName = component.profileForm.controls["lastName"];
+    const itemLastName = component.profileForm.controls["lastName"];
     itemLastName.setValue("lastName");
-    let itemBiography = component.profileForm.controls["biography"];
+    const itemBiography = component.profileForm.controls["biography"];
     itemBiography.setValue("biography 22");
-    let itemPassword = component.profileForm.controls["password"]
+    const itemPassword = component.profileForm.controls["password"];
     itemPassword.setValue("salut");
     expect(component.profileForm.valid).toBeTruthy();
 
@@ -48,5 +48,5 @@ describe('ModifyProfileComponent', () => {
   it('form invalid when empty', () => {
     expect(component.profileForm.valid).toBeFalsy();
   });
-  
+
 });
