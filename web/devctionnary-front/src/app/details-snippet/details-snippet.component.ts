@@ -25,7 +25,7 @@ export class DetailsSnippetComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.snippetService.getSnippetById(this.id).subscribe(
-      (data) => {
+      (data: {data}) => {
         if (!data || !data.data) {
           this.router.navigate(['/']);
         }

@@ -32,8 +32,8 @@ export class GetProfileComponent implements OnInit {
     // Check route params
     this.route.queryParams.subscribe(params => {
       if (params['id']) {
-        this.userService.getUser(params['id'])
-        .subscribe((data: {data: {user: userType}}) => {
+        // @ts-ignore
+        this.userService.getUser(params['id']).subscribe((data: {data: {user: userType}}) => {
           this.user = JSON.parse(data.data.user);
           this.editAllowed = false;
         }, (error: HttpErrorResponse) => {
@@ -44,8 +44,8 @@ export class GetProfileComponent implements OnInit {
           }
         });
       } else {
-        this.userService.getUser(null)
-        .subscribe((data: {data: {user: userType}}) => {
+        // @ts-ignore
+        this.userService.getUser(null).subscribe((data: {data: {user: userType}}) => {
           this.user = JSON.parse(data.data.user);
           this.editAllowed = true;
         }, error => {

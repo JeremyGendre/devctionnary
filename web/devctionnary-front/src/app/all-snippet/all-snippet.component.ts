@@ -20,9 +20,8 @@ export class AllSnippetComponent implements OnInit {
 
   getAllSnippets(): void{
     this.allSnippets = [];
-    this.snippetService.getAllSnippets().subscribe((data) => {
+    this.snippetService.getAllSnippets().subscribe((data: {data}) => {
       this.allSnippets = data.data;
-      console.log(this.allSnippets);
     },
     (err: HttpErrorResponse)=>{
       console.error(err.error);
