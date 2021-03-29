@@ -15,7 +15,7 @@ describe('ErrorModalComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ErrorModalComponent);
-    component = fixture.componentInstance;
+    //component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
