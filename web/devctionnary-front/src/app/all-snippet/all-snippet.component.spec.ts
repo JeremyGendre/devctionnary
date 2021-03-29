@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AllSnippetComponent } from './all-snippet.component';
 
@@ -8,7 +10,8 @@ describe('AllSnippetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AllSnippetComponent ]
+      declarations: [ AllSnippetComponent ],
+      imports: [ HttpClientTestingModule,RouterTestingModule ]
     })
     .compileComponents();
   });
@@ -19,7 +22,7 @@ describe('AllSnippetComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+   it('should create', () => {
+     expect(component).toBeTruthy();
+   });
 });

@@ -1,4 +1,3 @@
-import { UserService } from './../services/user.service';
 import { DialogService } from './../services/dialog.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -13,8 +12,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  isLoading: boolean = false;
-  isSubmitDisabled: boolean = false;
+  isLoading = false;
 
   registerForm: FormGroup = new FormGroup({
     username: new FormControl('',  [Validators.required, Validators.minLength(4)]),
@@ -22,20 +20,20 @@ export class RegisterComponent implements OnInit {
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-  })
+  });
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private _snackBar: MatSnackBar,
-    private dialogService: DialogService,
-    private userService: UserService
+    private dialogService: DialogService
   ) { }
 
   ngOnInit(): void {
+    console.log('register init')
   }
 
-  onRegister(e) {
+  onRegister(e: Event): void{
     e.preventDefault();
       this.isLoading = true;
       this.authService
@@ -46,7 +44,7 @@ export class RegisterComponent implements OnInit {
           this.lastName.value,
           this.email.value
         )
-        .subscribe((data: any) => {
+        .subscribe((data: {success: boolean}) => {
           if (data.success === true) {
             this.isLoading = false;
             this._snackBar.open('Inscription effectuée !', 'Fermer', {
@@ -61,23 +59,6 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
           this.dialogService.openErrorDialog();
         })
-
-
-  }
-
-  onUsernameChange() {
-    if (this.username.value !== '') {
-      this.userService.getUsernameAvailability(this.username.value)
-      .subscribe((data: {data: {available: boolean}}) => {
-        if (data.data.available === false) {
-          this.username.setErrors({
-            'available': false
-          });
-        }
-      }, (error: HttpErrorResponse) => {
-        console.error(error.error);
-      });
-    }
   }
 
   // Getters

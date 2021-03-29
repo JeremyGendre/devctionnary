@@ -1,4 +1,9 @@
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { RegisterComponent } from './register.component';
 
@@ -8,7 +13,8 @@ describe('RegisterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ]
+      declarations: [ RegisterComponent ],
+      imports: [ FormsModule, ReactiveFormsModule, HttpClientTestingModule, RouterTestingModule, MatSnackBarModule, MatDialogModule ]
     })
     .compileComponents();
   });
@@ -19,7 +25,28 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+   it('should create', () => {
+     expect(component).toBeTruthy();
+   });
+
+   it('form invalid when empty', ()=> {
+     expect(component.registerForm.invalid).toBeTruthy();
+   })
+
+
+   it('is form valid ', () =>{
+    const itemLogin = component.registerForm.controls["username"];
+    itemLogin.setValue("user1");
+    const itemPassword = component.registerForm.controls["password"];
+    itemPassword.setValue("salut");
+    const firstName = component.registerForm.controls["firstName"];
+    firstName.setValue("User");
+    const lastName = component.registerForm.controls["lastName"];
+    lastName.setValue("One");
+    const email = component.registerForm.controls["email"];
+    email.setValue("user1@gmail.com");
+    expect(component.registerForm.valid).toBeTruthy();
   });
+
+
 });
