@@ -2,6 +2,7 @@ import { User } from './../models/user';
 import { environment } from './../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UserService {
     this.baseHeaders = this.baseHeaders.set('Accept', 'application/json');
    }
 
-  getUser(id?: number) {
+  getUser(id?: number): Observable<Object>|void {
     if (id === null) {
       return this.http.get(
         environment.apiUrl + '/api/users/me',
@@ -26,7 +27,7 @@ export class UserService {
     }
   }
 
-  patchMe(user: User, password: string) {
+  patchMe(user: User, password: string): Observable<Object> {
     return this.http.patch(
       environment.apiUrl + '/api/users/me',
       {
@@ -39,16 +40,7 @@ export class UserService {
     );
   }
 
-  getUsernameAvailability(username: string) {
-    return this.http.get(
-      environment.apiUrl + '/api/users/username-availability/' + username,
-      {
-        headers: this.baseHeaders
-      }
-    );
-  }
-
-  deleteMe() {
+  deleteMe(): Observable<Object>{
     return this.http.delete(
       environment.apiUrl + '/api/users/me',
       {

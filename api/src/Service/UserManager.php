@@ -78,8 +78,8 @@ class UserManager extends AbstractEntityManager implements EntityManagerInterfac
      * Patch a user.
      *
      * @param User $user
-     * @param array $data
      * @return void
+     * @throws Exception
      */
     public function patchUser(User $user): void
     {

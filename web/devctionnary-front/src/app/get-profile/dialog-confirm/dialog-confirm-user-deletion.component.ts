@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
   templateUrl: 'dialog-confirm-user-deletion.html',
 })
 export class DialogConfirmUserDeletionComponent {
-  isLoading: boolean = false;
+  isLoading = false;
 
   constructor(
     private userService: UserService,
@@ -17,7 +17,7 @@ export class DialogConfirmUserDeletionComponent {
     private dialogService: DialogService
   ) {}
 
-  deleteAccount() {
+  deleteAccount(): void {
     this.isLoading = true;
     this.userService.deleteMe()
       .subscribe(() => {

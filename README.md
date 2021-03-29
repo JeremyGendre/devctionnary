@@ -1,5 +1,8 @@
 # DEVCTIONNARY
 
+[![GitHub Super-Linter](https://github.com/JeremyGendre/devctionnary/workflows/PHP%20Lint/badge.svg)](https://github.com/marketplace/actions/super-linter)
+[![GitHub Super-Linter](https://github.com/JeremyGendre/devctionnary/workflows/JS%20Lint/badge.svg)](https://github.com/marketplace/actions/super-linter)
+
 ### Setup
 
 **Requirements** :
@@ -53,6 +56,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Then, duplicate the .env file and create a .env.local file that you can override in order to fill in the right information about the database and so on.
 
+Database : MySQL. Please, make sure to uncomment the DATABASE_URL line in your .env.local (with 'mysql' in it) and fill the right informations.
+
 ### Commands
 
 Move to the */api* directory and run :
@@ -74,3 +79,11 @@ If that doesn't work, check [this tutorial](https://developers.yubico.com/PIV/Gu
 **OR** If you have *make* installed on your computer :
 - `make install` or `make install-dataset`. Then :
 - `symfony serve` to start the php development server
+
+### Tests
+
+First, make sure to be in the */api* directory. Also, in order to run the back-end tests properly, make sure to setup the projet as explained above.
+
+You can now run tests, with 2 choices of command lines: 
+   - `php bin/phpunit` to run all back-end tests
+   - `php bin/phpunit --testsuite functional` to only run the 'Functional' tests 

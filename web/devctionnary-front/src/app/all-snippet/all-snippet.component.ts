@@ -18,19 +18,18 @@ export class AllSnippetComponent implements OnInit {
     this.getAllSnippets();
   }
 
-  getAllSnippets(){
+  getAllSnippets(): void{
     this.allSnippets = [];
-    this.snippetService.getAllSnippets().subscribe((data) => {
+    this.snippetService.getAllSnippets().subscribe((data: {data}) => {
       this.allSnippets = data.data;
-      console.log(this.allSnippets);
     },
     (err: HttpErrorResponse)=>{
       console.error(err.error);
     })
   }
 
-  onDetails(id: string) {
+  onDetails(id: string): void {
     this.router.navigate(['snippets', 'details', id]);
   }
-  
+
 }

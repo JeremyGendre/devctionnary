@@ -1,5 +1,4 @@
 import { DialogConfirmUserDeletionComponent } from './dialog-confirm/dialog-confirm-user-deletion.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogService } from './../services/dialog.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -9,6 +8,9 @@ import { User } from './../models/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+
+type userType = "";
+
 @Component({
   selector: 'app-get-profile',
   templateUrl: './get-profile.component.html',
@@ -16,7 +18,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GetProfileComponent implements OnInit {
   user: User;
-  editAllowed: boolean = true;
+  editAllowed = true;
 
   constructor(
     private userService: UserService,
@@ -30,8 +32,8 @@ export class GetProfileComponent implements OnInit {
     // Check route params
     this.route.queryParams.subscribe(params => {
       if (params['id']) {
-        this.userService.getUser(params['id'])
-        .subscribe((data: {data: {user: any}}) => {
+        // @ts-ignore
+        this.userService.getUser(params['id']).subscribe((data: {data: {user: userType}}) => {
           this.user = JSON.parse(data.data.user);
           this.editAllowed = false;
         }, (error: HttpErrorResponse) => {
@@ -42,8 +44,8 @@ export class GetProfileComponent implements OnInit {
           }
         });
       } else {
-        this.userService.getUser(null)
-        .subscribe((data: {data: {user: any}}) => {
+        // @ts-ignore
+        this.userService.getUser(null).subscribe((data: {data: {user: userType}}) => {
           this.user = JSON.parse(data.data.user);
           this.editAllowed = true;
         }, error => {
@@ -57,7 +59,7 @@ export class GetProfileComponent implements OnInit {
     })
   }
 
-  confirmDeletion() {
+  confirmDeletion(): void{
     this.dialog.open(DialogConfirmUserDeletionComponent);
   }
 }
