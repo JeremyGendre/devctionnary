@@ -79,3 +79,11 @@ If that doesn't work, check [this tutorial](https://developers.yubico.com/PIV/Gu
 **OR** If you have *make* installed on your computer :
 - `make install` or `make install-dataset`. Then :
 - `symfony serve` to start the php development server
+
+### Tests
+
+First, make sure to be in the */api* directory. Also, in order to run the back-end tests properly, make sure to setup the projet as explained above.
+
+You can now run tests, with 2 choices of command lines: 
+   - `php bin/phpunit` to run all back-end tests
+   - `php bin/phpunit --testsuite functional` to only run the 'Functional' tests 
