@@ -14,7 +14,7 @@ export class AuthenticatedStoreService {
     return this._authenticated.getValue();
   }
 
-  updateAuthenticated() {
+  updateAuthenticated(): void {
     this._authenticated.next(this.authService.isAuthenticated());
   }
 }

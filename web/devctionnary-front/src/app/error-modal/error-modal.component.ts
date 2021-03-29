@@ -6,13 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./error-modal.component.scss']
 })
 export class ErrorModalComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  reload(): void {
+    window.location.reload();
   }
 
-  reload() {
-    window.location.reload();
+  ngOnInit(): void {
+    console.log('modal loaded');
   }
 }

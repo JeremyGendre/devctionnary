@@ -1,0 +1,21 @@
+.example-button-row {
+    display: table-cell;
+  }
+  
+  .example-flex-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .example-button-container {
+    display: flex;
+    justify-content: center;
+    width: 75px;
+  }
+  
+  .card {
+    margin: auto;
+    width: 80%;
+    margin-top: 20px;
+  }

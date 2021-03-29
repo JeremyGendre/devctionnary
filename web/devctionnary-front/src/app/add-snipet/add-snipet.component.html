@@ -6,31 +6,22 @@
     <form [formGroup]="addSnipetForm" (submit)="onSubmit()">
         <div>
           <p>
-            <mat-form-field appearance="outline">
+            <mat-form-field class="inputWidth" appearance="outline">
               <mat-label>Titre du snippet</mat-label>
               <input matInput formControlName="title">
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <br>
+            <mat-form-field class="inputWidth" appearance="outline">
               <mat-label>Description du snippet</mat-label>
               <input matInput formControlName="description">
             </mat-form-field>
           </p>
-          <br/>
-          <mat-form-field appearance="outline">
+          <mat-form-field class="inputFullWidth" appearance="outline">
             <mat-label>Contenu</mat-label>
-            <input matInput formControlName="content">
+            <textarea matInput formControlName="content" placeholder="Code"></textarea>
           </mat-form-field>
-            <!-- <label>Nom:
-                <input formControlName="title" placeholder="name"/>
-            </label>
-            <label>description:
-                <input formControlName="description" placeholder="description"/>
-            </label>
-            <label>Code:
-              <input formControlName="content" placeholder="content"/>
-            </label> -->
             <br/>
-            <button type="submit" [disabled]="!addSnipetForm.valid">Ajouter</button>
+            <button type="submit" [disabled]="!addSnipetForm.valid" mat-raised-button color="primary">Ajouter</button>
         </div>
       </form>
   </mat-card-content>

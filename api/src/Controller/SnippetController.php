@@ -53,6 +53,41 @@ class SnippetController extends BaseAbstractController
         return $this->successJsonResponse($snippet);
     }
 
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/{id}", name="snippet_update", methods={"POST"})
+     * @param SnippetManager $snippetManager
+     * @return JsonResponse
+     */
+    public function updateSnippet(Snippet $snippet, SnippetManager $snippetManager): JsonResponse
+    {
+        
+        if (!$snippet) {
+            return $this->errorJsonResponse("Erreur de modification du snippet");
+        }
+        $snippet = $snippetManager->update($snippet);
+        $em = $this->getDoctrine()->getManager();
+        $em->flush();
+        return $this->successJsonResponse($snippet);
+    }
+
+    /**
+     * @IsGranted("ROLE_USER")
+     * @Route("/{id}", name="snippet_delete", methods={"DELETE"})
+     * @param SnippetManager $snippetManager
+     * @return JsonResponse
+     */
+    public function deleteSnippet(Snippet $snippet, SnippetManager $snippetManager): JsonResponse
+    {
+        
+        if (!$snippet) {
+            return $this->errorJsonResponse("Erreur de la suppresion du snippet");
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($snippet);
+        $em->flush();
+        return $this->successJsonResponse();
+    }
 
     /**
      * @Route("/{id}", name="snippets_get_one", methods={"GET"})

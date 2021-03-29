@@ -1,24 +1,37 @@
-
-    <mat-card class="example-card" >
-      <mat-card-header>
-        <mat-card-title *ngIf="snippet.title">{{snippet.title}}</mat-card-title>
-        <mat-card-subtitle *ngIf="snippet.updatedAt" > dernière modification <span>{{snippet.updatedAt }}</span></mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <textarea *ngIf="snippet.content" highlight-js [options]="{}" lang="'angular'">
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title *ngIf="snippet.title">{{snippet.title}}</mat-card-title>
+    <mat-card-subtitle *ngIf="snippet.updatedAt"> dernière modification <span>{{snippet.updatedAt }}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <textarea *ngIf="snippet.content" highlight-js [options]="{}" lang="'angular'">
             {{snippet.content}}
         </textarea>
-        <mat-card-subtitle *ngIf="snippet.author && snippet.author.username"> Ecrit par <strong>{{snippet.author.username }}</strong></mat-card-subtitle>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button (click)="back()">Retour</button>
-        <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
-          <mat-icon>favorite</mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card>
-
-
-
-
+    <mat-card-subtitle *ngIf="snippet.author && snippet.author.username"> Ecrit par <strong>{{snippet.author.username }}</strong></mat-card-subtitle>
+    </mat-card-subtitle>
+  </mat-card-content>
+  <mat-card-actions>
+    <div class="example-button-row">
+      <div class="example-flex-container">
+        <button mat-raised-button color="primary" (click)="back()">Retour</button>
+        <div class="example-button-container">
+          <button mat-mini-fab color="warn" aria-label="Example icon button with a heart icon">
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </div>
+        <div class="example-button-container">
+            <button mat-mini-fab color="primary" (click)="onUpdate(snippet.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+        </div>
+        <div class="example-button-container">
+          <button mat-mini-fab color="warn" (click)="onDelete(snippet.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card-actions>
+</mat-card>
 

@@ -1,5 +1,4 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -12,7 +11,7 @@ describe('AddSnipetComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddSnipetComponent ], 
+      declarations: [ AddSnipetComponent ],
       imports: [ FormsModule, ReactiveFormsModule,HttpClientTestingModule,RouterTestingModule ]
     })
     .compileComponents();
@@ -31,14 +30,14 @@ describe('AddSnipetComponent', () => {
   it('form invalid when empty ', () =>{
     expect(component.addSnipetForm.invalid).toBeFalsy();
   });
-  
+
   it('is form valid ', () =>{
-    let itemTitle = component.addSnipetForm.controls["title"];
+    const itemTitle = component.addSnipetForm.controls["title"];
     itemTitle.setValue("title1");
-    let itemDescription = component.addSnipetForm.controls["description"];
+    const itemDescription = component.addSnipetForm.controls["description"];
     itemDescription.setValue("description1");
-    let itemContent = component.addSnipetForm.controls["content"];
-    itemContent.setValue("content1")
+    const itemContent = component.addSnipetForm.controls["content"];
+    itemContent.setValue("content1");
     expect(component.addSnipetForm.valid).toBeTruthy();
   });
 

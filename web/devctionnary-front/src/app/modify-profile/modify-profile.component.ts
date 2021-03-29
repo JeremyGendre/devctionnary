@@ -15,9 +15,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./modify-profile.component.scss']
 })
 export class ModifyProfileComponent implements OnInit {
-  isLoading: boolean = false;
+  isLoading = false;
   user: User;
-  isSubmitDisabled: boolean = false;
+  isSubmitDisabled = false;
   formError: string = null;
 
   profileForm = new FormGroup({
@@ -42,7 +42,7 @@ export class ModifyProfileComponent implements OnInit {
     .subscribe((data: {data: {user: string}}) => {
       const user: User = JSON.parse(data.data.user);
       this.user = user;
-      
+
       this.profileForm.patchValue({
         username: user.username,
         email: user.email,
@@ -62,13 +62,13 @@ export class ModifyProfileComponent implements OnInit {
     });
   }
 
-  onSubmit(e) {
+  onSubmit(e: Event): void {
     this.formError = null;
     e.preventDefault();
     if (this.isSubmitDisabled === false) {
       this.isLoading = true;
       this.userService.patchMe(this.profileForm.value, this.password.value)
-        .subscribe((data: {data: any}) => {
+        .subscribe(() => {
           this.isLoading = false;
           this._snackBar.open('Changements enregistrés !', 'Fermer', {
             duration: 1500
@@ -92,26 +92,11 @@ export class ModifyProfileComponent implements OnInit {
     }
   }
 
-  onUsernameChange() {
-    this.isSubmitDisabled = true;
-    if (this.username.value !== '') {
-      this.userService.getUsernameAvailability(this.username.value)
-      .subscribe((data: {data: {available: boolean}}) => {
-        if (data.data.available === false) {
-          this.username.setErrors({
-            'available': false
-          });
-          this.isSubmitDisabled = false;
-        }
-      }, (error: HttpErrorResponse) => {});
-    }
-  }
-
   // Getters
   get username(): FormControl {
     return this.profileForm.get('username') as FormControl
   }
-  
+
   get email(): FormControl {
     return this.profileForm.get('email') as FormControl
   }

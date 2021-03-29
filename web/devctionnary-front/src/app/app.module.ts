@@ -1,7 +1,7 @@
 import { AuthenticatedStoreService } from './services/stores/authenticated-store.service';
 import { DialogConfirmUserDeletionComponent } from './get-profile/dialog-confirm/dialog-confirm-user-deletion.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,6 +33,7 @@ import { DetailsSnippetComponent } from './details-snippet/details-snippet.compo
 import { HighlightJsModule } from 'ngx-highlight-js';
 import { RegisterComponent } from './register/register.component';
 import { AddSnipetComponent } from './add-snipet/add-snipet.component';
+import { UpdateSnippetComponent } from './update-snippet/update-snippet.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { AddSnipetComponent } from './add-snipet/add-snipet.component';
     ModifyProfileComponent,
     ErrorModalComponent,
     DialogConfirmUserDeletionComponent,
-    RegisterComponent
+    RegisterComponent,
+    UpdateSnippetComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +72,7 @@ import { AddSnipetComponent } from './add-snipet/add-snipet.component';
     MatGridListModule,
     MatCardModule,
     MatFormFieldModule,
-    MatInputModule, 
+    MatInputModule,
     FormsModule,
     MatProgressSpinnerModule,
     MatInputModule,
