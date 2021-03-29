@@ -38,7 +38,6 @@ export class ModifyProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    // @ts-ignore
     this.userService.getUser(null).subscribe((data: {data: {user: string}}) => {
       const user: User = JSON.parse(data.data.user);
       this.user = user;
