@@ -56,12 +56,13 @@ class SnippetController extends BaseAbstractController
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="snippet_update", methods={"POST"})
+     * @param Snippet $snippet
      * @param SnippetManager $snippetManager
      * @return JsonResponse
      */
     public function updateSnippet(Snippet $snippet, SnippetManager $snippetManager): JsonResponse
     {
-        
+
         if (!$snippet) {
             return $this->errorJsonResponse("Erreur de modification du snippet");
         }
@@ -74,12 +75,12 @@ class SnippetController extends BaseAbstractController
     /**
      * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="snippet_delete", methods={"DELETE"})
-     * @param SnippetManager $snippetManager
+     * @param Snippet $snippet
      * @return JsonResponse
      */
-    public function deleteSnippet(Snippet $snippet, SnippetManager $snippetManager): JsonResponse
+    public function deleteSnippet(Snippet $snippet): JsonResponse
     {
-        
+
         if (!$snippet) {
             return $this->errorJsonResponse("Erreur de la suppresion du snippet");
         }
