@@ -19,6 +19,9 @@
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
         </testsuite>
+        <testsuite name="functional">
+            <directory>tests/Functional/tests</directory>
+        </testsuite>
     </testsuites>
 
     <filter>
